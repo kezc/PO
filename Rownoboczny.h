@@ -18,7 +18,7 @@ protected:
 public:
     Rownoboczny(int kolor, double bok);
 
-    void setBok(double bok);
+    void ustawBok(double bok);
 
     double getPole();
 

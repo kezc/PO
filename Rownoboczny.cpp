@@ -13,7 +13,7 @@ double Rownoboczny::getPole() {
     return pole;
 }
 
-void Rownoboczny::setBok(double bok) {
+void Rownoboczny::ustawBok(double bok) {
     ustawBoki(bok, bok, bok);
     obliczePole();
     obliczObwod();

@@ -3,7 +3,6 @@
 //
 
 #include "Czworokat.h"
-#include "Punkt.h"
 
 Czworokat::Czworokat(int kolor, int bokA, int bokB, int bokC, int bokD) : FiguryGeometryczne(kolor), bokA(bokA),
                                                                           bokB(bokB), bokC(bokC), bokD(bokD) {}

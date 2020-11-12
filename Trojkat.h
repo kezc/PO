@@ -7,7 +7,6 @@
 
 
 #include "FiguryGeometryczne.h"
-#include "Punkt.h"
 
 class Trojkat : public FiguryGeometryczne {
 private:

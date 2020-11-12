@@ -5,8 +5,7 @@
 #ifndef PROJEKT_CZWOROKAT_H
 #define PROJEKT_CZWOROKAT_H
 
-
-#include "Punkt.h"
+#include "FiguryGeometryczne.h"
 
 class Czworokat : public FiguryGeometryczne {
 protected:

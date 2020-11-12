@@ -6,10 +6,10 @@
 #define PROJEKT_OSTR_TROJ_PR_H
 
 
-#include "Punkt.h"
 #include "Trojkat.h"
+#include "Punkt.h"
 
-class Ostr_troj_pr : public Punkt, public Trojkat {
+class Ostr_troj_pr : public Punkt<double>, public Trojkat {
 private:
     double krawedz;
 

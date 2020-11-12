@@ -15,7 +15,8 @@ void Ostr_troj_pr::obliczKrawedz() {
 
 
 Ostr_troj_pr::Ostr_troj_pr(int kolor, double bokPodstawy, double wysokosc)
-        : Punkt(kolor, 0, 0, wysokosc), Trojkat(kolor, bokPodstawy, bokPodstawy, bokPodstawy), wysokosc(wysokosc) {
+        : Punkt<double>(kolor, 0, 0, wysokosc), Trojkat(kolor, bokPodstawy, bokPodstawy, bokPodstawy),
+          wysokosc(wysokosc) {
     obliczKrawedz();
     Ostr_troj_pr::obliczObwod();
 }
