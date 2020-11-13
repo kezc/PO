@@ -10,7 +10,7 @@
 #include "FiguryGeometryczne.h"
 
 template<typename T>
-class Punkt : public FiguryGeometryczne {
+class Punkt : public virtual FiguryGeometryczne {
 protected:
     T x;
     T y;
@@ -46,12 +46,11 @@ public:
 
     Punkt(int kolor, T x, T y, T z) : FiguryGeometryczne(kolor), x(x), y(y), z(z) {}
 
-    T odleglosc(Punkt<T> *punkt) {
+    double odleglosc(Punkt<T> *punkt) {
         double xDist = Punkt::x - punkt->x;
         double yDist = Punkt::y - punkt->y;
         double zDist = Punkt::z - punkt->z;
         return sqrt(pow(xDist, 2) + pow(yDist, 2) + pow(zDist, 2));
-        return 5;
     }
 
     Punkt *operator+=(Punkt<T> const &obj) {

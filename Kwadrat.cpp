@@ -4,8 +4,9 @@
 
 #include "Kwadrat.h"
 
-Kwadrat::Kwadrat(int color, int bok) : Czworokat(color, bok, bok, bok, bok) {
-    Kwadrat::obliczPole();
+Kwadrat::Kwadrat(int kolor, double bok) : FiguryGeometryczne(kolor), Czworokat(kolor, bok, bok, bok, bok) {
+    obliczPole();
+    obliczObwod();
 }
 
 double Kwadrat::getPole() {
@@ -16,7 +17,11 @@ void Kwadrat::obliczPole() {
     pole = bokA * bokA;
 }
 
-void Kwadrat::ustawBok(int bok) {
+void Kwadrat::ustawBok(double bok) {
     ustawBoki(bok, bok, bok, bok);
     obliczPole();
+}
+
+void Kwadrat::obliczObwod() {
+    ustawObwod(4 * bokA);
 }

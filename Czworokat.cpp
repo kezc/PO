@@ -4,30 +4,33 @@
 
 #include "Czworokat.h"
 
-Czworokat::Czworokat(int kolor, int bokA, int bokB, int bokC, int bokD) : FiguryGeometryczne(kolor), bokA(bokA),
-                                                                          bokB(bokB), bokC(bokC), bokD(bokD) {}
+Czworokat::Czworokat(int kolor, double bokA, double bokB, double bokC, double bokD) : FiguryGeometryczne(kolor),
+                                                                                      bokA(bokA),
+                                                                                      bokB(bokB), bokC(bokC),
+                                                                                      bokD(bokD) {
+}
 
 double Czworokat::getObwod() {
     return obwod;
 }
 
-int Czworokat::getBokA() const {
+double Czworokat::getBokA() const {
     return bokA;
 }
 
-int Czworokat::getBokB() const {
+double Czworokat::getBokB() const {
     return bokB;
 }
 
-int Czworokat::getBokC() const {
+double Czworokat::getBokC() const {
     return bokC;
 }
 
-int Czworokat::getBokD() const {
+double Czworokat::getBokD() const {
     return bokD;
 }
 
-void Czworokat::ustawBoki(int bokA, int bokB, int bokC, int bokD) {
+void Czworokat::ustawBoki(double bokA, double bokB, double bokC, double bokD) {
     Czworokat::bokA = bokA;
     Czworokat::bokB = bokB;
     Czworokat::bokC = bokC;
@@ -37,6 +40,10 @@ void Czworokat::ustawBoki(int bokA, int bokB, int bokC, int bokD) {
 
 void Czworokat::obliczObwod() {
     obwod = bokA + bokB + bokC + bokD;
+}
+
+void Czworokat::ustawObwod(double obwod) {
+    Czworokat::obwod = obwod;
 }
 
 

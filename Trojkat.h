@@ -8,19 +8,27 @@
 
 #include "FiguryGeometryczne.h"
 
-class Trojkat : public FiguryGeometryczne {
+class Trojkat : public virtual FiguryGeometryczne {
 private:
-protected:
-    virtual void obliczObwod();
-
     double obwod;
-    double bokA, bokB, bokC;
+protected:
+    double bokA, bokB, bokC, pole;
+
+    virtual void obliczObwod() = 0;
+
+    virtual void obliczPole() = 0;
+
+    void ustawObwod(double obwod);
+
 public:
     Trojkat(int kolor, double bokA, double bokB, double bokC);
 
     double getObwod();
 
+    double getPole() const;
+
     void ustawBoki(double bokA, double bokB, double bokC);
+
 };
 
 

@@ -7,26 +7,30 @@
 
 #include "FiguryGeometryczne.h"
 
-class Czworokat : public FiguryGeometryczne {
-protected:
-    int bokA, bokB, bokC, bokD;
+class Czworokat : public virtual FiguryGeometryczne {
+private:
     double obwod;
+protected:
+    double bokA, bokB, bokC, bokD;
 public:
-    virtual void obliczObwod();
+    void ustawObwod(double obwod);
 
-    double getObwod();
+public:
+    virtual void obliczObwod() = 0;
 
-    int getBokA() const;
+    virtual double getObwod();
 
-    int getBokB() const;
+    double getBokA() const;
 
-    int getBokC() const;
+    double getBokB() const;
 
-    int getBokD() const;
+    double getBokC() const;
 
-    void ustawBoki(int bokA, int bokB, int bokC, int bokD);
+    double getBokD() const;
 
-    Czworokat(int kolor, int bokA, int bokB, int bokC, int bokD);
+    void ustawBoki(double bokA, double bokB, double bokC, double bokD);
+
+    Czworokat(int kolor, double bokA, double bokB, double bokC, double bokD);
 };
 
 

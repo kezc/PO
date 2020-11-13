@@ -6,15 +6,6 @@
 
 Trojkat::Trojkat(int kolor, double bokA, double bokB, double bokC) : FiguryGeometryczne(kolor), bokA(bokA), bokB(bokB),
                                                                      bokC(bokC) {
-    Trojkat::obliczObwod();
-}
-
-double Trojkat::getObwod() {
-    return obwod;
-}
-
-void Trojkat::obliczObwod() {
-    obwod = bokA + bokB + bokC;
 }
 
 void Trojkat::ustawBoki(double bokA, double bokB, double bokC) {
@@ -22,6 +13,19 @@ void Trojkat::ustawBoki(double bokA, double bokB, double bokC) {
     Trojkat::bokB = bokB;
     Trojkat::bokC = bokC;
     obliczObwod();
+    obliczPole();
+}
+
+double Trojkat::getPole() const {
+    return pole;
+}
+
+void Trojkat::ustawObwod(double obwod) {
+    Trojkat::obwod = obwod;
+}
+
+double Trojkat::getObwod() {
+    return obwod;
 }
 
 

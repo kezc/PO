@@ -10,17 +10,21 @@
 #include "Trojkat.h"
 
 class Rownoboczny : public Trojkat {
+private:
+    double height;
 protected:
-    double pole;
+    void obliczObwod() override;
 
-    virtual void obliczePole();
+    void obliczPole() override;
+
+    void obliczWysokosc();
 
 public:
     Rownoboczny(int kolor, double bok);
 
     void ustawBok(double bok);
 
-    double getPole();
+    double getHeight() const;
 
 };
 

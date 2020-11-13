@@ -4,22 +4,26 @@
 
 #include "Rownoboczny.h"
 
-Rownoboczny::Rownoboczny(int kolor, double bok) : Trojkat(kolor, bok, bok, bok) {
-    Rownoboczny::obliczePole();
-    Rownoboczny::obliczObwod();
-}
-
-double Rownoboczny::getPole() {
-    return pole;
+Rownoboczny::Rownoboczny(int kolor, double bok) : FiguryGeometryczne(kolor), Trojkat(kolor, bok, bok, bok) {
+    obliczObwod();
+    obliczPole();
 }
 
 void Rownoboczny::ustawBok(double bok) {
     ustawBoki(bok, bok, bok);
-    obliczePole();
+    obliczPole();
     obliczObwod();
 }
 
-void Rownoboczny::obliczePole() {
+void Rownoboczny::obliczObwod() {
+    ustawObwod(3 * bokA);
+}
+
+void Rownoboczny::obliczPole() {
     pole = pow(bokA, 2) * sqrt(3) / 4.0;
+}
+
+double Rownoboczny::getHeight() const {
+    return bokA * sqrt(3) / 2.0;;
 }
 

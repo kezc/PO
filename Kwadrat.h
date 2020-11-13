@@ -14,16 +14,17 @@ private:
 protected:
     double pole;
 
-    void obliczPole();
+    virtual void obliczPole();
 
 public:
 
-    void ustawBok(int bok);
+    void ustawBok(double bok);
 
-    Kwadrat(int color, int bok);
+    Kwadrat(int kolor, double bok);
 
     double getPole();
 
+    void obliczObwod() override;
 };
 
 
