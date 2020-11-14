@@ -26,6 +26,8 @@ InneTrojkaty::InneTrojkaty(int kolor, double bokA, double bokB, double bokC) : F
                                                                                Trojkat(kolor, bokA, bokB, bokC) {
     obliczObwod();
     obliczPole();
+    obliczSredniaDlugoscBoku();
+    obliczNajkrotszyBok();
 }
 
 void InneTrojkaty::obliczObwod() {

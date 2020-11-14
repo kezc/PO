@@ -10,12 +10,18 @@ private:
 protected:
     double iloczynDlugosciBokow;
 
-    void obliczSredniaDluscBoku();
+    void obliczSredniaDlugoscBoku();
 
     void obliczIloczynDlugosciBokow();
 
 public:
     void obliczObwod() override;
+
+    double getSredniaDlugoscBoku() const;
+
+    double getIloczynDlugosciBokow() const;
+
+    InneCzworokaty(int kolor, double bokA, double bokB, double bokC, double bokD);
 };
 
 
