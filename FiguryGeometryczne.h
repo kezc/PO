@@ -6,6 +6,8 @@
 #define PROJEKT_FIGURYGEOMETRYCZNE_H
 
 
+#include <fstream>
+
 class FiguryGeometryczne {
     //dodaj prywatne
     static int licznik;
@@ -20,6 +22,16 @@ public:
     FiguryGeometryczne(int kolor);
 
     int getId() const;
+
+    virtual void modifykuj() = 0;
+
+    virtual void wypiszDane() = 0;
+
+    virtual void zapiszDoPliku(std::ofstream &plik) = 0;
+
+    void setId(int id);
+
+    virtual ~FiguryGeometryczne() = default;
 
     static void ustawLicznik(int licznik);
 };

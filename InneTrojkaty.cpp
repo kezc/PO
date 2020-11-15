@@ -3,6 +3,7 @@
 //
 
 #include <tgmath.h>
+#include <iostream>
 #include "InneTrojkaty.h"
 
 double InneTrojkaty::getSredniaDlugoscBoku() const {
@@ -24,17 +25,43 @@ double InneTrojkaty::getNajkrotszyBok() const {
 
 InneTrojkaty::InneTrojkaty(int kolor, double bokA, double bokB, double bokC) : FiguryGeometryczne(kolor),
                                                                                Trojkat(kolor, bokA, bokB, bokC) {
-    obliczObwod();
-    obliczPole();
     obliczSredniaDlugoscBoku();
     obliczNajkrotszyBok();
 }
 
-void InneTrojkaty::obliczObwod() {
-    ustawObwod(bokA + bokB + bokC);
+void InneTrojkaty::modifykuj() {
+    std::cout << "Co chcesz zmienić?" << std::endl;
+    std::cout << "1. Kolor" << std::endl;
+    std::cout << "2. Boki" << std::endl;
+    int opcja;
+    std::cin >> opcja;
+    if (opcja == 1) {
+        std::cout << "Podaj nowy kolor" << std::endl;
+        std::cin >> kolor;
+    } else if (opcja == 2) {
+        double nowyBokA, nowyBokB, nowyBokC;
+        std::cout << "Podaj nowe długości boków:" << std::endl;
+        std::cin >> nowyBokA >> nowyBokB >> nowyBokC;
+        ustawBoki(nowyBokA, nowyBokB, nowyBokC);
+    } else {
+        std::cout << "Nieznana operacja" << std::endl;
+    }
 }
 
-void InneTrojkaty::obliczPole() {
-    double polowaObwodu = getObwod() / 2;
-    pole = sqrt(polowaObwodu * (polowaObwodu - bokA) * (polowaObwodu - bokB) * (polowaObwodu - bokC));
+void InneTrojkaty::wypiszDane() {
+    std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << std::endl;
+    std::cout << "Id: " << getId() << std::endl;
+    std::cout << "Obwod: " << getObwod() << std::endl;
+    std::cout << "Pole: " << pole << std::endl;
+    std::cout << "Srednia dlugosc boku: " << sredniaDlugoscBoku << std::endl;
+    std::cout << "Najkrotszy bok: " << najkrotszyBok << std::endl;
+}
+
+void InneTrojkaty::zapiszDoPliku(std::ofstream &plik) {
+    plik << "InneTrojkaty" << std::endl;
+    plik << getId() << std::endl;
+    plik << kolor << std::endl;
+    plik << bokA << std::endl;
+    plik << bokB << std::endl;
+    plik << bokC << std::endl;
 }

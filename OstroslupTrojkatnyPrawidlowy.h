@@ -17,21 +17,26 @@ private:
 
 protected:
     double wysokosc;
+    double objetosc;
 
     void obliczObwod() override;
 
     void obliczPole() override;
 
 public:
-
-    OstroslupTrojkatnyPrawidlowy(int kolor, double bokPodstawy,
-                                 double wysokosc);
+    OstroslupTrojkatnyPrawidlowy(int kolor, std::string &etykietaWierzcholka, double bokPodstawy, double wysokosc);
 
     void ustawBok(double bok);
 
     void ustawWysokosc(double wysokosc);
 
+    void obliczObjetosc();
 
+    void modifykuj() override;
+
+    void wypiszDane() override;
+
+    void zapiszDoPliku(std::ofstream &plik) override;
 };
 
 

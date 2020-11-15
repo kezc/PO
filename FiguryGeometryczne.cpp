@@ -24,3 +24,7 @@ FiguryGeometryczne::FiguryGeometryczne(int kolor) : kolor(kolor) {
 void FiguryGeometryczne::ustawLicznik(int licznik) {
     FiguryGeometryczne::licznik = licznik;
 }
+
+void FiguryGeometryczne::setId(int id) {
+    FiguryGeometryczne::id = id;
+}

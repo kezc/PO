@@ -17,6 +17,7 @@ private:
 
 protected:
     double wysokosc;
+    double objetosc;
 
     void obliczObwod() override;
 
@@ -24,13 +25,20 @@ protected:
 
 public:
 
-    OstroslupCzworokatnyPrawidlowy(int kolor, double bokPodstawy,
+    OstroslupCzworokatnyPrawidlowy(int kolor, std::string &etykietaWierzcholka, double bokPodstawy,
                                    double wysokosc);
 
-    void ustawBok(double bok);
+    void ustawBok(double bok) override;
 
     void ustawWysokosc(double wysokosc);
 
+    void modifykuj() override;
+
+    void wypiszDane() override;
+
+    void obliczObjetosc();
+
+    void zapiszDoPliku(std::ofstream &plik) override;
 };
 
 

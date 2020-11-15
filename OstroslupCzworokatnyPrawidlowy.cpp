@@ -2,6 +2,7 @@
 // Created by wojtek on 13.11.2020.
 //
 
+#include <iostream>
 #include "OstroslupCzworokatnyPrawidlowy.h"
 
 void OstroslupCzworokatnyPrawidlowy::obliczKrawedz() {
@@ -13,13 +14,15 @@ void OstroslupCzworokatnyPrawidlowy::obliczObwod() {
 }
 
 
-OstroslupCzworokatnyPrawidlowy::OstroslupCzworokatnyPrawidlowy(int kolor, double bokPodstawy,
+OstroslupCzworokatnyPrawidlowy::OstroslupCzworokatnyPrawidlowy(int kolor, std::string &etykietaWierzcholka,
+                                                               double bokPodstawy,
                                                                double wysokosc)
-        : FiguryGeometryczne(kolor), Punkt<double>(kolor, 0, 0, wysokosc),
+        : FiguryGeometryczne(kolor), Punkt<double>(kolor, etykietaWierzcholka, 0, 0, wysokosc),
           Kwadrat(kolor, bokPodstawy), wysokosc(wysokosc) {
     obliczKrawedz();
     obliczObwod();
     obliczPole();
+    obliczObjetosc();
 }
 
 
@@ -28,15 +31,73 @@ void OstroslupCzworokatnyPrawidlowy::ustawBok(double bok) {
     obliczKrawedz();
     obliczObwod();
     obliczPole();
+    obliczObjetosc();
 }
 
 void OstroslupCzworokatnyPrawidlowy::ustawWysokosc(double wysokosc) {
     Punkt::ustawNoweKoordynaty(0, 0, wysokosc);
     obliczKrawedz();
     obliczObwod();
+    obliczPole();
+    obliczObjetosc();
 }
 
 void OstroslupCzworokatnyPrawidlowy::obliczPole() {
     double wysokoscBoku = sqrt(pow(krawedz, 2) - pow((bokA / 2.0), 2));
     pole = pow(bokA, 2) * sqrt(3) / 4.0 + 2 * bokA * wysokoscBoku;
+}
+
+void OstroslupCzworokatnyPrawidlowy::obliczObjetosc() {
+    objetosc = bokA * bokA * wysokosc / 3.0;
+}
+
+void OstroslupCzworokatnyPrawidlowy::modifykuj() {
+    std::cout << "Co chcesz zmienić?" << std::endl;
+    std::cout << "1. Kolor" << std::endl;
+    std::cout << "2. Bok podstawy" << std::endl;
+    std::cout << "3. Wysokosc" << std::endl;
+    std::cout << "4. Etykiete wierzcholka" << std::endl;
+    int opcja;
+    std::cin >> opcja;
+    if (opcja == 1) {
+        std::cout << "Podaj nowy kolor" << std::endl;
+        std::cin >> kolor;
+    } else if (opcja == 2) {
+        std::cout << "Podaj nowa dlugosc boku podstawy:" << std::endl;
+        double bok;
+        std::cin >> bok;
+        ustawBok(bok);
+    } else if (opcja == 3) {
+        double nowaWysokosc;
+        std::cout << "Podaj nowa wysokosc" << std::endl;
+        std::cin >> nowaWysokosc;
+        ustawWysokosc(nowaWysokosc);
+    } else if (opcja == 4) {
+        std::string nowaEtykieta;
+        std::cout << "Podaj nowa etykiete" << std::endl;
+        std::cin >> nowaEtykieta;
+        ustawEtykiete(nowaEtykieta);
+    } else {
+        std::cout << "Nieznana operacja" << std::endl;
+    }
+}
+
+void OstroslupCzworokatnyPrawidlowy::wypiszDane() {
+    std::cout << "Bok podstawy: " << bokA << std::endl;
+    std::cout << "Id:" << getId() << std::endl;
+    std::cout << "Etykieta:" << getEtykieta() << std::endl;
+    std::cout << "Obwod:" << getObwod() << std::endl;
+    std::cout << "Pole powierzchni: " << pole << std::endl;
+    std::cout << "Objetosc:" << objetosc << std::endl;
+    std::cout << "Wysokosc :" << wysokosc << std::endl;
+    std::cout << "Krawedz :" << krawedz << std::endl;
+}
+
+void OstroslupCzworokatnyPrawidlowy::zapiszDoPliku(std::ofstream &plik) {
+    plik << "OstroslupCzworokatnyPrawidlowy" << std::endl;
+    plik << getId() << std::endl;
+    plik << getEtykieta() << std::endl;
+    plik << kolor << std::endl;
+    plik << bokA << std::endl;
+    plik << wysokosc << std::endl;
 }

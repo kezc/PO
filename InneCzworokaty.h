@@ -22,6 +22,12 @@ public:
     double getIloczynDlugosciBokow() const;
 
     InneCzworokaty(int kolor, double bokA, double bokB, double bokC, double bokD);
+
+    void modifykuj() override;
+
+    void wypiszDane() override;
+
+    void zapiszDoPliku(std::ofstream &plik) override;
 };
 
 

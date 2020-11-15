@@ -18,13 +18,12 @@ protected:
 
 public:
 
-    void ustawBok(double bok);
+    virtual void ustawBok(double bok);
 
     Kwadrat(int kolor, double bok);
 
     double getPole();
 
-    void obliczObwod() override;
 };
 
 

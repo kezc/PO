@@ -11,12 +11,12 @@
 
 template<typename T>
 class Punkt : public virtual FiguryGeometryczne {
+private:
+    std::string etykieta;
 protected:
     T x;
     T y;
     T z;
-private:
-    std::string etykieta;
 public:
     const std::string &getName() const {
         return etykieta;
@@ -44,7 +44,12 @@ public:
         return z;
     }
 
-    Punkt(int kolor, T x, T y, T z) : FiguryGeometryczne(kolor), x(x), y(y), z(z) {}
+    const std::string &getEtykieta() const {
+        return etykieta;
+    }
+
+    Punkt(int kolor, std::string &etykieta, T x, T y, T z) : FiguryGeometryczne(kolor), etykieta(etykieta), x(x),
+                                                             y(y), z(z) {}
 
     double odleglosc(Punkt<T> *punkt) {
         double xDist = Punkt::x - punkt->x;

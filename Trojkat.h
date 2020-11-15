@@ -14,9 +14,9 @@ private:
 protected:
     double bokA, bokB, bokC, pole;
 
-    virtual void obliczObwod() = 0;
+    virtual void obliczObwod();
 
-    virtual void obliczPole() = 0;
+    virtual void obliczPole();
 
     void ustawObwod(double obwod);
 

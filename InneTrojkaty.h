@@ -18,10 +18,6 @@ protected:
 
     void obliczNajkrotszyBok();
 
-    void obliczObwod() override;
-
-    void obliczPole() override;
-
 public:
     InneTrojkaty(int kolor, double bokA, double bokB, double bokC);
 
@@ -32,6 +28,11 @@ public:
 
     double getNajkrotszyBok() const;
 
+    void modifykuj() override;
+
+    void wypiszDane() override;
+
+    void zapiszDoPliku(std::ofstream &plik) override;
 
 };
 

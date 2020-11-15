@@ -35,7 +35,7 @@ void Czworokat::ustawBoki(double bokA, double bokB, double bokC, double bokD) {
     Czworokat::bokB = bokB;
     Czworokat::bokC = bokC;
     Czworokat::bokD = bokD;
-    Czworokat::obliczObwod();
+    obliczObwod();
 }
 
 void Czworokat::obliczObwod() {

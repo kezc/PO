@@ -21,7 +21,3 @@ void Kwadrat::ustawBok(double bok) {
     ustawBoki(bok, bok, bok, bok);
     obliczPole();
 }
-
-void Kwadrat::obliczObwod() {
-    ustawObwod(4 * bokA);
-}

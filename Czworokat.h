@@ -12,13 +12,13 @@ private:
     double obwod;
 protected:
     double bokA, bokB, bokC, bokD;
-public:
+
     void ustawObwod(double obwod);
 
 public:
-    virtual void obliczObwod() = 0;
+    virtual void obliczObwod();
 
-    virtual double getObwod();
+    double getObwod();
 
     double getBokA() const;
 

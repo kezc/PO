@@ -11,21 +11,32 @@
 
 class Rownoboczny : public Trojkat {
 private:
-    double height;
+    double promienOkreguOpisanego;
 protected:
-    void obliczObwod() override;
+    double wysokosc;
 
-    void obliczPole() override;
+//    void obliczObwod() override;
+//
+//    void obliczPole() override;
 
     void obliczWysokosc();
+
+    void obliczPromienOkreguOpisanego();
 
 public:
     Rownoboczny(int kolor, double bok);
 
     void ustawBok(double bok);
 
-    double getHeight() const;
+    double getWysokosc() const;
 
+    double getPromienOkreguOpisanego() const;
+
+    void modifykuj() override;
+
+    void wypiszDane() override;
+
+    void zapiszDoPliku(std::ofstream &plik) override;
 };
 
 
