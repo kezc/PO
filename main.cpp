@@ -8,20 +8,7 @@
 int FiguryGeometryczne::licznik = 0;
 
 int main() {
-    MenedzerFigur menedzerFigur;
+    Konsola konsola;
 
-//    menedzerFigur.dodajRownoboczny();
-//    menedzerFigur.dodajInneCzworokaty();
-//    menedzerFigur.dodajInneTrojkaty();
-//    menedzerFigur.dodajOstroslupCzworokatnyPrawidlowy();
-//    menedzerFigur.dodajOstroslupTrojkatnyPrawidlowy();
-//
-//    menedzerFigur.zapiszDoPliku();
-    menedzerFigur.odczytajZPliku();
-    menedzerFigur.wypiszTrojkatyRownoboczne();
-//    menedzerFigur.wypiszInneCzworokaty();
-    menedzerFigur.wypiszInneTrojkaty();
-//    menedzerFigur.wypiszOstroslupyCzworokatnePrawidlowe();
-    menedzerFigur.wypiszOstroslupyTrojkatnePrawidlowe();
     return 0;
 }

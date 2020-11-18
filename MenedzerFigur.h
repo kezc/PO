@@ -21,7 +21,6 @@
 
 class MenedzerFigur {
 private:
-    std::string aktualnyWezel = "FiguryGeometryczne";
     std::vector<FiguryGeometryczne *> liscie;
     std::vector<Punkt<double> *> lisciePunkt;
     std::vector<Trojkat *> liscieTrojkat;
@@ -34,128 +33,79 @@ private:
     std::vector<OstroslupCzworokatnyPrawidlowy *> liscieOstroslupCzworokatnyPrawidlowy;
 
 public:
-    void dodajOstroslupCzworokatnyPrawidlowy() {
-        int kolor;
-        double bokPodstawy;
-        double wysokosc;
-        std::string etykietaWierzcholka;
-
-        std::cout << "Podaj etykiete wierzcholka";
-        std::cin >> etykietaWierzcholka;
-        std::cout << "Podaj kolor";
-        std::cin >> kolor;
-        std::cout << "Podaj długość boku";
-        std::cin >> bokPodstawy;
-        std::cout << "Podaj wysokosc";
-        std::cin >> wysokosc;
-
+    void dodajOstroslupCzworokatnyPrawidlowy(int kolor,
+                                             double bokPodstawy,
+                                             double wysokosc,
+                                             std::string etykietaWierzcholka,
+                                             int id = -1) {
         auto *ostroslupCzworokatnyPrawidlowy =
                 new OstroslupCzworokatnyPrawidlowy(kolor, etykietaWierzcholka, bokPodstawy, wysokosc);
-        dodajOstroslupCzworokatnyPrawidlowyDoList(ostroslupCzworokatnyPrawidlowy);
-    }
 
-    void dodajRownoboczny() {
-        double bok;
-        int kolor;
+        if (id > 0) ostroslupCzworokatnyPrawidlowy->setId(id);
 
-        std::cout << "Podaj kolor" << std::endl;
-        std::cin >> kolor;
-        std::cout << "Podaj długość boku" << std::endl;
-        std::cin >> bok;
-
-        auto *rownoboczny = new Rownoboczny(kolor, bok);
-
-        dodajRownobocznyDoList(rownoboczny);
-    }
-
-    void dodajInneTrojkaty() {
-        double bokA, bokB, bokC;
-        int kolor;
-
-        std::cout << "Podaj kolor" << std::endl;
-        std::cin >> kolor;
-        std::cout << "Podaj długości bokow a b c" << std::endl;
-        std::cin >> bokA >> bokB >> bokC;
-
-        auto *inneTrojkaty = new InneTrojkaty(kolor, bokA, bokB, bokC);
-        dodajInneTrojkatyDoList(inneTrojkaty);
-    }
-
-    void dodajOstroslupTrojkatnyPrawidlowy() {
-        int kolor;
-        double bokPodstawy;
-        double wysokosc;
-        std::string etykietaWierzcholka;
-
-        std::cout << "Podaj etykiete wierzcholka";
-        std::cin >> etykietaWierzcholka;
-        std::cout << "Podaj kolor" << std::endl;
-        std::cin >> kolor;
-        std::cout << "Podaj długość boku" << std::endl;
-        std::cin >> bokPodstawy;
-        std::cout << "Podaj wysokosc" << std::endl;
-        std::cin >> wysokosc;
-
-        auto *ostroslupTrojkatnyPrawidlowy =
-                new OstroslupTrojkatnyPrawidlowy(kolor, etykietaWierzcholka, bokPodstawy, wysokosc);
-        dodajOstroslupTrojkatnyPrawidlowyDoList(ostroslupTrojkatnyPrawidlowy);
-    }
-
-    void dodajInneCzworokaty() {
-        double bokA, bokB, bokC, bokD;
-        int kolor;
-
-        std::cout << "Podaj kolor" << std::endl;
-        std::cin >> kolor;
-        std::cout << "Podaj długości bokow a b c d" << std::endl;
-        std::cin >> bokA >> bokB >> bokC >> bokD;
-
-        auto *inneCzworokaty = new InneCzworokaty(kolor, bokA, bokB, bokC, bokD);
-        dodajInneCzworokatyDoList(inneCzworokaty);
-    }
-
-    void dodajOstroslupCzworokatnyPrawidlowyDoList(OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy) {
         liscieOstroslupCzworokatnyPrawidlowy.push_back(ostroslupCzworokatnyPrawidlowy);
         lisciePunkt.push_back(ostroslupCzworokatnyPrawidlowy);
         liscieOstroslupCzworokatnyPrawidlowy.push_back(ostroslupCzworokatnyPrawidlowy);
         liscie.push_back(ostroslupCzworokatnyPrawidlowy);
     }
 
-    void dodajRownobocznyDoList(Rownoboczny *rownoboczny) {
+    void dodajRownoboczny(int kolor, double bok, int id = -1) {
+        auto *rownoboczny = new Rownoboczny(kolor, bok);
+
+        if (id > 0) rownoboczny->setId(id);
+
         liscieRownoboczny.push_back(rownoboczny);
         liscieTrojkat.push_back(rownoboczny);
         liscie.push_back(rownoboczny);
     }
 
-    void dodajInneTrojkatyDoList(InneTrojkaty *inneTrojkaty) {
+    void dodajInneTrojkaty(int kolor, double bokA, double bokB, double bokC,
+                           int id = -1) {
+        auto *inneTrojkaty = new InneTrojkaty(kolor, bokA, bokB, bokC);
+
+        if (id > 0) inneTrojkaty->setId(id);
+
         liscieInneTrojkaty.push_back(inneTrojkaty);
         liscieTrojkat.push_back(inneTrojkaty);
         liscie.push_back(inneTrojkaty);
     }
 
-    void dodajOstroslupTrojkatnyPrawidlowyDoList(OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy) {
+    void dodajOstroslupTrojkatnyPrawidlowy(int kolor,
+                                           double bokPodstawy,
+                                           double wysokosc,
+                                           std::string etykietaWierzcholka, int id = -1) {
+        auto *ostroslupTrojkatnyPrawidlowy =
+                new OstroslupTrojkatnyPrawidlowy(kolor, etykietaWierzcholka, bokPodstawy, wysokosc);
+
+        if (id > 0) ostroslupTrojkatnyPrawidlowy->setId(id);
+
         liscieOstroslupTrojkatnyPrawidlowy.push_back(ostroslupTrojkatnyPrawidlowy);
         lisciePunkt.push_back(ostroslupTrojkatnyPrawidlowy);
         liscieTrojkat.push_back(ostroslupTrojkatnyPrawidlowy);
         liscie.push_back(ostroslupTrojkatnyPrawidlowy);
     }
 
-    void dodajInneCzworokatyDoList(InneCzworokaty *inneCzworokaty) {
+    void dodajInneCzworokaty(int kolor, double bokA, double bokB, double bokC, double bokD, int id = -1
+    ) {
+        auto *inneCzworokaty = new InneCzworokaty(kolor, bokA, bokB, bokC, bokD);
+
+        if (id > 0) inneCzworokaty->setId(id);
+
         liscieInneCzworokaty.push_back(inneCzworokaty);
         liscieCzworokat.push_back(inneCzworokaty);
         liscie.push_back(inneCzworokaty);
     }
 
-    void usunInneCzworokaty() {
-        int id;
+    bool usunInneCzworokaty(int id) {
         InneCzworokaty *innyCzworokat;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
         for (auto &element : liscieInneCzworokaty) {
             if (element->getId() == id) {
                 innyCzworokat = element;
             }
         }
+
+        if (innyCzworokat == nullptr) return false;
+
         liscieInneCzworokaty.erase(std::remove(liscieInneCzworokaty.begin(), liscieInneCzworokaty.end(), innyCzworokat),
                                    liscieInneCzworokaty.end());
         liscieCzworokat.erase(
@@ -163,19 +113,19 @@ public:
                 liscieCzworokat.end());
         liscie.erase(std::remove(liscie.begin(), liscie.end(), innyCzworokat),
                      liscie.end());
+        return true;
     }
 
 
-    void usunOstroslupTrojkatnyPrawidlowy() {
-        int id;
+    bool usunOstroslupTrojkatnyPrawidlowy(int id) {
         OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
         for (auto &element : liscieOstroslupTrojkatnyPrawidlowy) {
             if (element->getId() == id) {
                 ostroslupTrojkatnyPrawidlowy = element;
             }
         }
+        if (ostroslupTrojkatnyPrawidlowy == nullptr) return false;
+
         liscieOstroslupTrojkatnyPrawidlowy.erase(
                 std::remove(liscieOstroslupTrojkatnyPrawidlowy.begin(), liscieOstroslupTrojkatnyPrawidlowy.end(),
                             ostroslupTrojkatnyPrawidlowy),
@@ -186,54 +136,54 @@ public:
                           lisciePunkt.end());
         liscie.erase(std::remove(liscie.begin(), liscie.end(), ostroslupTrojkatnyPrawidlowy),
                      liscie.end());
+        return true;
     }
 
-    void usunInneTrojkaty() {
-        int id;
+    bool usunInneTrojkaty(int id) {
         InneTrojkaty *inneTrojkaty;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
         for (auto &element : liscieInneTrojkaty) {
             if (element->getId() == id) {
                 inneTrojkaty = element;
             }
         }
+        if (inneTrojkaty == nullptr) return false;
+
         liscieInneTrojkaty.erase(std::remove(liscieInneTrojkaty.begin(), liscieInneTrojkaty.end(), inneTrojkaty),
                                  liscieInneTrojkaty.end());
         liscieTrojkat.erase(std::remove(liscieTrojkat.begin(), liscieTrojkat.end(), inneTrojkaty),
                             liscieTrojkat.end());
         liscie.erase(std::remove(liscie.begin(), liscie.end(), inneTrojkaty),
                      liscie.end());
+        return true;
     }
 
-    void usunRownoboczny() {
-        int id;
+    bool usunRownoboczny(int id) {
         Rownoboczny *rownoboczny;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
         for (auto &element : liscieRownoboczny) {
             if (element->getId() == id) {
                 rownoboczny = element;
             }
         }
+        if (rownoboczny == nullptr) return false;
+
         liscieRownoboczny.erase(std::remove(liscieRownoboczny.begin(), liscieRownoboczny.end(), rownoboczny),
                                 liscieRownoboczny.end());
         liscieTrojkat.erase(std::remove(liscieTrojkat.begin(), liscieTrojkat.end(), rownoboczny),
                             liscieTrojkat.end());
         liscie.erase(std::remove(liscie.begin(), liscie.end(), rownoboczny),
                      liscie.end());
+        return true;
     }
 
-    void usunOstroslupCzworokatnyPrawidlowy() {
-        int id;
+    bool usunOstroslupCzworokatnyPrawidlowy(int id) {
         OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
         for (auto &element : liscieOstroslupCzworokatnyPrawidlowy) {
             if (element->getId() == id) {
                 ostroslupCzworokatnyPrawidlowy = element;
             }
         }
+        if (ostroslupCzworokatnyPrawidlowy == nullptr) return false;
+
         liscieOstroslupCzworokatnyPrawidlowy.erase(
                 std::remove(liscieOstroslupCzworokatnyPrawidlowy.begin(), liscieOstroslupCzworokatnyPrawidlowy.end(),
                             ostroslupCzworokatnyPrawidlowy),
@@ -245,40 +195,7 @@ public:
                 liscieCzworokat.end());
         liscie.erase(std::remove(liscie.begin(), liscie.end(), ostroslupCzworokatnyPrawidlowy),
                      liscie.end());
-    }
-
-    void wypiszTrojkatyRownoboczne() {
-        for (auto &element : liscieRownoboczny) {
-            element->wypiszDane();
-            std::cout << std::endl;
-        }
-    }
-
-    void wypiszInneTrojkaty() {
-        for (auto &element : liscieInneTrojkaty) {
-            element->wypiszDane();
-            std::cout << std::endl;
-        }
-    }
-
-    void wypiszInneCzworokaty() {
-        for (auto &element : liscieInneCzworokaty) {
-            element->wypiszDane();
-            std::cout << std::endl;
-        }
-    }
-
-    void wypiszOstroslupyTrojkatnePrawidlowe() {
-        for (auto &element : liscieOstroslupTrojkatnyPrawidlowy) {
-            element->wypiszDane();
-            std::cout << std::endl;
-        }
-    }
-
-    void wypiszOstroslupyCzworokatnePrawidlowe() {
-        for (auto &element : liscieOstroslupCzworokatnyPrawidlowy) {
-            std::cout << std::endl;
-        }
+        return true;
     }
 
     virtual ~MenedzerFigur() {
@@ -303,10 +220,7 @@ public:
                 plik >> bok;
                 plik >> wysokosc;
                 if (id > maxId) maxId = id;
-                auto *ostroslupTrojkatnyPrawidlowy =
-                        new OstroslupTrojkatnyPrawidlowy(kolor, etykietaWierzcholka, bok, wysokosc);
-                ostroslupTrojkatnyPrawidlowy->setId(id);
-                dodajOstroslupTrojkatnyPrawidlowyDoList(ostroslupTrojkatnyPrawidlowy);
+                dodajOstroslupTrojkatnyPrawidlowy(kolor, bok, wysokosc, etykietaWierzcholka, id);
             } else if (typ == "OstroslupCzworokatnyPrawidlowy") {
                 int id, kolor;
                 double bok, wysokosc;
@@ -317,10 +231,7 @@ public:
                 plik >> bok;
                 plik >> wysokosc;
                 if (id > maxId) maxId = id;
-                auto *ostroslupCzworokatnyPrawidlowy =
-                        new OstroslupCzworokatnyPrawidlowy(kolor, etykietaWierzcholka, bok, wysokosc);
-                ostroslupCzworokatnyPrawidlowy->setId(id);
-                dodajOstroslupCzworokatnyPrawidlowyDoList(ostroslupCzworokatnyPrawidlowy);
+                dodajOstroslupCzworokatnyPrawidlowy(kolor, bok, wysokosc, etykietaWierzcholka, id);
             } else if (typ == "InneTrojkaty") {
                 int id, kolor;
                 double bokA, bokB, bokC;
@@ -330,10 +241,7 @@ public:
                 plik >> bokB;
                 plik >> bokC;
                 if (id > maxId) maxId = id;
-                auto *innyTrojkat =
-                        new InneTrojkaty(kolor, bokA, bokB, bokC);
-                innyTrojkat->setId(id);
-                dodajInneTrojkatyDoList(innyTrojkat);
+                dodajInneTrojkaty(kolor, bokA, bokB, bokC, id);
             } else if (typ == "InneCzworokaty") {
                 int id, kolor;
                 double bokA, bokB, bokC, bokD;
@@ -344,10 +252,7 @@ public:
                 plik >> bokC;
                 plik >> bokD;
                 if (id > maxId) maxId = id;
-                auto *innyCzworokat =
-                        new InneCzworokaty(kolor, bokA, bokB, bokC, bokD);
-                innyCzworokat->setId(id);
-                dodajInneCzworokatyDoList(innyCzworokat);
+                dodajInneCzworokaty(kolor, bokA, bokB, bokC, bokD, id);
             } else if (typ == "Rownoboczny") {
                 int id, kolor;
                 double bok;
@@ -355,12 +260,10 @@ public:
                 plik >> kolor;
                 plik >> bok;
                 if (id > maxId) maxId = id;
-                auto *rownoboczny =
-                        new Rownoboczny(kolor, bok);
-                rownoboczny->setId(id);
-                dodajRownobocznyDoList(rownoboczny);
+                dodajRownoboczny(kolor, bok, id);
             }
         }
+        FiguryGeometryczne::ustawLicznik(maxId);
     }
 
     void zapiszDoPliku() {
@@ -370,6 +273,46 @@ public:
             element->zapiszDoPliku(plik);
         }
         plik.close();
+    }
+
+    const std::vector<FiguryGeometryczne *> &getLiscie() const {
+        return liscie;
+    }
+
+    const std::vector<Punkt<double> *> &getLisciePunkt() const {
+        return lisciePunkt;
+    }
+
+    const std::vector<Trojkat *> &getLiscieTrojkat() const {
+        return liscieTrojkat;
+    }
+
+    const std::vector<Czworokat *> &getLiscieCzworokat() const {
+        return liscieCzworokat;
+    }
+
+    const std::vector<Rownoboczny *> &getLiscieRownoboczny() const {
+        return liscieRownoboczny;
+    }
+
+    const std::vector<InneTrojkaty *> &getLiscieInneTrojkaty() const {
+        return liscieInneTrojkaty;
+    }
+
+    const std::vector<OstroslupTrojkatnyPrawidlowy *> &getLiscieOstroslupTrojkatnyPrawidlowy() const {
+        return liscieOstroslupTrojkatnyPrawidlowy;
+    }
+
+    const std::vector<Kwadrat *> &getLiscieKwadrat() const {
+        return liscieKwadrat;
+    }
+
+    const std::vector<InneCzworokaty *> &getLiscieInneCzworokaty() const {
+        return liscieInneCzworokaty;
+    }
+
+    const std::vector<OstroslupCzworokatnyPrawidlowy *> &getLiscieOstroslupCzworokatnyPrawidlowy() const {
+        return liscieOstroslupCzworokatnyPrawidlowy;
     }
 };
 
