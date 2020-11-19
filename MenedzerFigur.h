@@ -97,12 +97,7 @@ public:
     }
 
     bool usunInneCzworokaty(int id) {
-        InneCzworokaty *innyCzworokat;
-        for (auto &element : liscieInneCzworokaty) {
-            if (element->getId() == id) {
-                innyCzworokat = element;
-            }
-        }
+        InneCzworokaty *innyCzworokat = znajdzCzworokatPoId(id);
 
         if (innyCzworokat == nullptr) return false;
 
@@ -116,14 +111,19 @@ public:
         return true;
     }
 
-
-    bool usunOstroslupTrojkatnyPrawidlowy(int id) {
-        OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy;
-        for (auto &element : liscieOstroslupTrojkatnyPrawidlowy) {
+    InneCzworokaty *znajdzCzworokatPoId(int id) const {
+        InneCzworokaty *innyCzworokat = nullptr;
+        for (auto &element : liscieInneCzworokaty) {
             if (element->getId() == id) {
-                ostroslupTrojkatnyPrawidlowy = element;
+                innyCzworokat = element;
             }
         }
+        return innyCzworokat;
+    }
+
+
+    bool usunOstroslupTrojkatnyPrawidlowy(int id) {
+        OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = znajdzOstroslupTrojkatnyPrawidlowyPoId(id);
         if (ostroslupTrojkatnyPrawidlowy == nullptr) return false;
 
         liscieOstroslupTrojkatnyPrawidlowy.erase(
@@ -139,13 +139,18 @@ public:
         return true;
     }
 
-    bool usunInneTrojkaty(int id) {
-        InneTrojkaty *inneTrojkaty;
-        for (auto &element : liscieInneTrojkaty) {
+    OstroslupTrojkatnyPrawidlowy *znajdzOstroslupTrojkatnyPrawidlowyPoId(int id) const {
+        OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = nullptr;
+        for (auto &element : liscieOstroslupTrojkatnyPrawidlowy) {
             if (element->getId() == id) {
-                inneTrojkaty = element;
+                ostroslupTrojkatnyPrawidlowy = element;
             }
         }
+        return ostroslupTrojkatnyPrawidlowy;
+    }
+
+    bool usunInneTrojkaty(int id) {
+        InneTrojkaty *inneTrojkaty = znajdzInneTrojkatyPoId(id);
         if (inneTrojkaty == nullptr) return false;
 
         liscieInneTrojkaty.erase(std::remove(liscieInneTrojkaty.begin(), liscieInneTrojkaty.end(), inneTrojkaty),
@@ -157,13 +162,18 @@ public:
         return true;
     }
 
-    bool usunRownoboczny(int id) {
-        Rownoboczny *rownoboczny;
-        for (auto &element : liscieRownoboczny) {
+    InneTrojkaty *znajdzInneTrojkatyPoId(int id) const {
+        InneTrojkaty *inneTrojkaty = nullptr;
+        for (auto &element : liscieInneTrojkaty) {
             if (element->getId() == id) {
-                rownoboczny = element;
+                inneTrojkaty = element;
             }
         }
+        return inneTrojkaty;
+    }
+
+    bool usunRownoboczny(int id) {
+        Rownoboczny *rownoboczny = znajdzRownobocznyPoId(id);
         if (rownoboczny == nullptr) return false;
 
         liscieRownoboczny.erase(std::remove(liscieRownoboczny.begin(), liscieRownoboczny.end(), rownoboczny),
@@ -175,13 +185,18 @@ public:
         return true;
     }
 
-    bool usunOstroslupCzworokatnyPrawidlowy(int id) {
-        OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy;
-        for (auto &element : liscieOstroslupCzworokatnyPrawidlowy) {
+    Rownoboczny *znajdzRownobocznyPoId(int id) const {
+        Rownoboczny *rownoboczny = nullptr;
+        for (auto &element : liscieRownoboczny) {
             if (element->getId() == id) {
-                ostroslupCzworokatnyPrawidlowy = element;
+                rownoboczny = element;
             }
         }
+        return rownoboczny;
+    }
+
+    bool usunOstroslupCzworokatnyPrawidlowy(int id) {
+        OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = znajdzOstroslupCzworokatnyPrawidlowyPoId(id);
         if (ostroslupCzworokatnyPrawidlowy == nullptr) return false;
 
         liscieOstroslupCzworokatnyPrawidlowy.erase(
@@ -198,15 +213,25 @@ public:
         return true;
     }
 
+    OstroslupCzworokatnyPrawidlowy *znajdzOstroslupCzworokatnyPrawidlowyPoId(int id) const {
+        OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = nullptr;
+        for (auto &element : liscieOstroslupCzworokatnyPrawidlowy) {
+            if (element->getId() == id) {
+                ostroslupCzworokatnyPrawidlowy = element;
+            }
+        }
+        return ostroslupCzworokatnyPrawidlowy;
+    }
+
     virtual ~MenedzerFigur() {
         for (auto &element : liscie) {
             delete element;
         }
     }
 
-    void odczytajZPliku() {
+    void odczytajZPliku(std::string &nazwa) {
         std::ifstream plik;
-        plik.open("baza");
+        plik.open(nazwa);
         std::string typ;
         int maxId = 0;
         while (plik >> typ) {
@@ -266,9 +291,9 @@ public:
         FiguryGeometryczne::ustawLicznik(maxId);
     }
 
-    void zapiszDoPliku() {
+    void zapiszDoPliku(std::string &nazwa) {
         std::ofstream plik;
-        plik.open("baza");
+        plik.open(nazwa);
         for (auto element : liscie) {
             element->zapiszDoPliku(plik);
         }

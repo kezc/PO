@@ -69,7 +69,6 @@ void Rownoboczny::wypiszDane() {
     std::cout << "Pole: " << pole << std::endl;
     std::cout << "Wysokosc: " << wysokosc << std::endl;
     std::cout << "Promien okregu opisanego: " << promienOkreguOpisanego << std::endl;
-
 }
 
 void Rownoboczny::zapiszDoPliku(std::ofstream &plik) {
