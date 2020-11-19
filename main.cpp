@@ -10,14 +10,7 @@ int FiguryGeometryczne::licznik = 0;
 
 int main() {
     Konsola konsola;
-    konsola.wczytajFigury();
-    konsola.wypiszWszystko();
-    konsola.zmienWezel();
-    konsola.wypiszObiektyZAktualnegoWezla();
-    konsola.wypiszSzczegolyDlaObiektuZLisciaPoId();
-    konsola.wypiszSzczegolyDlaObiektuZLisciaPoId();
-    konsola.modyfikujObiektZLisciaPoId();
-    konsola.wypiszSzczegolyDlaObiektuZLisciaPoId();
+    konsola.start();
 
     return 0;
 }

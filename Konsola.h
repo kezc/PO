@@ -1,6 +1,9 @@
 #ifndef PROJEKT_KONSOLA_H
 #define PROJEKT_KONSOLA_H
 
+#include <algorithm>
+#include <cctype>
+#include <string>
 
 #include "MenedzerFigur.h"
 
@@ -15,60 +18,103 @@ enum class Wezel {
     InneCzworokaty,
     OstroslupTrojkatnyPrawidlowy,
     OstroslupCzworokatnyPrawidlowy
+
+
 };
 
 class Konsola {
     MenedzerFigur menedzerFigur;
     Wezel aktualnyWezel = Wezel::FiguryGeometryczne;
+
 public:
-    void zmienWezel() {
-        std::cout << "Podaj NUMER wezla." << std::endl;
-        std::cout << "1. Figury Geometryczne" << std::endl;
-        std::cout << "2. Punkt" << std::endl;
-        std::cout << "3. Trojkat" << std::endl;
-        std::cout << "4. Czworokat" << std::endl;
-        std::cout << "5. Rownoboczny" << std::endl;
-        std::cout << "6. Inne Trojkaty" << std::endl;
-        std::cout << "7. Kwadrat" << std::endl;
-        std::cout << "8. InneCzworokaty" << std::endl;
-        std::cout << "9. Ostroslup Trojkatny_prawidlowy" << std::endl;
-        std::cout << "10. Ostroslup Czworokatny_Prawidlowy" << std::endl;
-        int odpowiedz;
-        std::cin >> odpowiedz;
-        switch (odpowiedz) {
-            case 1:
-                aktualnyWezel = Wezel::FiguryGeometryczne;
-                break;
-            case 2:
-                aktualnyWezel = Wezel::Punkt;
-                break;
-            case 3:
-                aktualnyWezel = Wezel::Trojkat;
-                break;
-            case 4:
-                aktualnyWezel = Wezel::Czworokat;
-                break;
-            case 5:
-                aktualnyWezel = Wezel::Rownoboczny;
-                break;
-            case 6:
-                aktualnyWezel = Wezel::InneTrojkaty;
-                break;
-            case 7:
-                aktualnyWezel = Wezel::Kwadrat;
-                break;
-            case 8:
-                aktualnyWezel = Wezel::InneCzworokaty;
-                break;
-            case 9:
-                aktualnyWezel = Wezel::OstroslupTrojkatnyPrawidlowy;
-                break;
-            case 10:
-                aktualnyWezel = Wezel::OstroslupCzworokatnyPrawidlowy;
-                break;
-            default:
-                std::cout << "Brak takiego węzła." << std::endl;
+    void start() {
+        std::string option;
+        std::cout << "Czy wczytac zapisane obiekty?" << std::endl;
+        std::cout << "TAK / NIE" << std::endl;
+        std::cin >> option;
+        if (option == "TAK") {
+            wczytajFigury();
         }
+
+        while (option != "END") {
+            std::cout << "Aktualny wezel: " << aktualnyWezelJakoString() << std::endl;
+            std::cout << "co chcesz zrobic?" << std::endl;
+            std::cin >> option;
+            if (option.substr(0, 2) == "CD") {
+                std::string wezel;
+                std::cin >> wezel;
+                zmienWezel(wezel);
+            } else if (option == "TREE") {
+                wypiszStrukture();
+            } else if (option == "MO") {
+                utworzObiektDlaAktualnegoLiscia();
+            } else if (option == "DO") {
+                int id;
+                std::cin >> id;
+                usunObiektZLisciaPoId(id);
+            } else if (option == "MDO") {
+                int id;
+                std::cin >> id;
+                modyfikujObiektZLisciaPoId(id);
+            } else if (option == "DIR") {
+                wypiszObiektyZAktualnegoWezla();
+            } else if (option == "SHOW") {
+                int id;
+                std::cin >> id;
+                wypiszSzczegolyDlaObiektuZLisciaPoId(id);
+            } else if (option == "SAVE") {
+                zapiszFigury();
+            } else {
+                std::cout << "Nieznana komenda." << std::endl;
+            };
+        }
+
+
+    }
+
+    void zmienWezel(std::string wezel) {
+        std::transform(wezel.begin(), wezel.end(), wezel.begin(),
+                       [](unsigned char c) { return std::tolower(c); });
+        if (wezel == "figury_geometryczne") {
+            aktualnyWezel = Wezel::FiguryGeometryczne;
+        } else if (wezel == "punkt") {
+            aktualnyWezel = Wezel::Punkt;
+        } else if (wezel == "trojkat") {
+            aktualnyWezel = Wezel::Trojkat;
+        } else if (wezel == "czworokat") {
+            aktualnyWezel = Wezel::Czworokat;
+        } else if (wezel == "rownoboczny") {
+            aktualnyWezel = Wezel::Rownoboczny;
+        } else if (wezel == "inne_trojkaty") {
+            aktualnyWezel = Wezel::InneTrojkaty;
+        } else if (wezel == "kwadrat") {
+            aktualnyWezel = Wezel::Kwadrat;
+        } else if (wezel == "inne_czworokaty") {
+            aktualnyWezel = Wezel::InneCzworokaty;
+        } else if (wezel == "ostroslup_trojkatny_prawidlowy") {
+            aktualnyWezel = Wezel::OstroslupTrojkatnyPrawidlowy;
+        } else if (wezel == "ostroslup_czworokatny_prawidlowy") {
+            aktualnyWezel = Wezel::OstroslupCzworokatnyPrawidlowy;
+        } else {
+            std::cout << "Brak takiego węzła." << std::endl;
+        }
+
+    }
+
+
+    void wypiszStrukture() {
+        std::cout << "                            FIGURY_GEOMETRYCZNE\n"
+                     "                     _______/         /         \\\n"
+                     "                    /              TROJKAT        CZWOROKAT\n"
+                     "                 PUNKT            /    |   \\             |   \\\n"
+                     "                   \\   \\   ROWNOBOCZNY | INNE_TROJKATY   |     INNE_CZWOROKATY\n"
+                     "                    \\   \\              |               KWADRAT\n"
+                     "                     \\   \\____         |                 |      \n"
+                     "                      \\       \\________|_________        |\n"
+                     "                       \\___            |         \\       |\n"
+                     "                            \\______    |          \\ __   |\n"
+                     "                                   \\   |              \\  |\n"
+                     "                   OSTROSLUP_TROJKATNY_PRAWIDLOWY  OSTROSLUP_CZWOROKATNY_PRAWIDLOWY\n\n";
     }
 
     void wypiszObiektyZAktualnegoWezla() {
@@ -128,12 +174,9 @@ public:
         }
     }
 
-    void wypiszSzczegolyDlaObiektuZLisciaPoId() {
-        int id;
+    void wypiszSzczegolyDlaObiektuZLisciaPoId(int id) {
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 Rownoboczny *rownoboczny;
                 if ((rownoboczny = menedzerFigur.znajdzRownobocznyPoId(id)) != nullptr) {
                     rownoboczny->wypiszDane();
@@ -142,8 +185,6 @@ public:
                 }
                 break;
             case Wezel::InneTrojkaty:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 InneTrojkaty *inneTrojkaty;
                 if ((inneTrojkaty = menedzerFigur.znajdzInneTrojkatyPoId(id)) != nullptr) {
                     inneTrojkaty->wypiszDane();
@@ -152,8 +193,6 @@ public:
                 }
                 break;
             case Wezel::InneCzworokaty:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 InneCzworokaty *inneCzworokaty;
                 if ((inneCzworokaty = menedzerFigur.znajdzCzworokatPoId(id)) != nullptr) {
                     inneCzworokaty->wypiszDane();
@@ -162,8 +201,6 @@ public:
                 }
                 break;
             case Wezel::OstroslupTrojkatnyPrawidlowy:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy;
                 if ((ostroslupTrojkatnyPrawidlowy = menedzerFigur.znajdzOstroslupTrojkatnyPrawidlowyPoId(id)) !=
                     nullptr) {
@@ -173,8 +210,6 @@ public:
                 }
                 break;
             case Wezel::OstroslupCzworokatnyPrawidlowy:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy;
                 if ((ostroslupCzworokatnyPrawidlowy = menedzerFigur.znajdzOstroslupCzworokatnyPrawidlowyPoId(id)) !=
                     nullptr) {
@@ -188,8 +223,7 @@ public:
         }
     }
 
-    void modyfikujObiektZLisciaPoId() {
-        int id;
+    void modyfikujObiektZLisciaPoId(int id) {
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
                 std::cout << "Podaj id obiektu." << std::endl;
@@ -249,8 +283,7 @@ public:
         }
     }
 
-    void usunObiektZLisciaPoId() {
-        int id;
+    void usunObiektZLisciaPoId(int id) {
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
                 std::cout << "Podaj id obiektu." << std::endl;
@@ -485,6 +518,32 @@ public:
         std::cout << "Podaj nazwe pliku" << std::endl;
         std::cin >> nazwaPliku;
         menedzerFigur.zapiszDoPliku(nazwaPliku);
+    }
+
+    std::string aktualnyWezelJakoString() {
+        switch (aktualnyWezel) {
+            case Wezel::FiguryGeometryczne:
+                return "Figury_Geometryczne";
+            case Wezel::Punkt:
+                return "Punkt";
+            case Wezel::Trojkat:
+                return "Trójkąt";
+            case Wezel::Czworokat:
+                return "Czworokąt";
+            case Wezel::Rownoboczny:
+                return "Rownoboczny";
+            case Wezel::InneTrojkaty:
+                return "Inne_Trojkaty";
+            case Wezel::Kwadrat:
+                return "Kwadrat";
+            case Wezel::InneCzworokaty:
+                return "Inne_Czworokaty";
+            case Wezel::OstroslupTrojkatnyPrawidlowy:
+                return "Ostroslup_Trojkatny_Prawidlowy";
+            case Wezel::OstroslupCzworokatnyPrawidlowy:
+                return "Ostroslup_Czworokatny_Prawidlowy";
+        }
+        return "";
     }
 
 };

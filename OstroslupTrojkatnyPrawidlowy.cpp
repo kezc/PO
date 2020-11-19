@@ -50,7 +50,6 @@ void OstroslupTrojkatnyPrawidlowy::obliczObjetosc() {
 
 void OstroslupTrojkatnyPrawidlowy::obliczPole() {
     double wysokoscBoku = sqrt(pow((bokA * sqrt(3) / 6.0), 2) + pow(wysokosc, 2));
-    std::cout << wysokoscBoku << std::endl;
     pole = pow(bokA, 2) * sqrt(3) / 4.0 + 3 * bokA * wysokoscBoku / 2;
 }
 

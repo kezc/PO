@@ -288,7 +288,7 @@ public:
                 dodajRownoboczny(kolor, bok, id);
             }
         }
-        FiguryGeometryczne::ustawLicznik(maxId);
+        FiguryGeometryczne::ustawLicznik(maxId + 1);
     }
 
     void zapiszDoPliku(std::string &nazwa) {
