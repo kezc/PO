@@ -2,7 +2,7 @@
 // Created by wojtek on 13.11.2020.
 //
 
-#include <tgmath.h>
+#include <ctgmath>
 #include <iostream>
 #include "InneTrojkaty.h"
 
@@ -49,8 +49,9 @@ void InneTrojkaty::modifykuj() {
 }
 
 void InneTrojkaty::wypiszDane() {
-    std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << std::endl;
     std::cout << "Id: " << getId() << std::endl;
+    std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << std::endl;
+    std::cout << "Kolor: " << kolor << std::endl;
     std::cout << "Obwod: " << getObwod() << std::endl;
     std::cout << "Pole: " << pole << std::endl;
     std::cout << "Srednia dlugosc boku: " << sredniaDlugoscBoku << std::endl;

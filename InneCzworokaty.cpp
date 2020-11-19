@@ -55,8 +55,9 @@ void InneCzworokaty::modifykuj() {
 }
 
 void InneCzworokaty::wypiszDane() {
-    std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << ", bok D:" << bokD << std::endl;
     std::cout << "Id: " << getId() << std::endl;
+    std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << ", bok D:" << bokD << std::endl;
+    std::cout << "Kolor: " << kolor << std::endl;
     std::cout << "Obwod: " << getObwod() << std::endl;
     std::cout << "Srednia dlugosc boku: " << sredniaDlugoscBoku << std::endl;
     std::cout << "Iloczyn dlugosci bokow: " << iloczynDlugosciBokow << std::endl;

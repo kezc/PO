@@ -87,8 +87,9 @@ void OstroslupTrojkatnyPrawidlowy::modifykuj() {
 }
 
 void OstroslupTrojkatnyPrawidlowy::wypiszDane() {
-    std::cout << "Bok podstawy: " << bokA << std::endl;
     std::cout << "Id:" << getId() << std::endl;
+    std::cout << "Bok podstawy: " << bokA << std::endl;
+    std::cout << "Kolor: " << kolor << std::endl;
     std::cout << "Etykieta:" << getEtykieta() << std::endl;
     std::cout << "Obwod:" << getObwod() << std::endl;
     std::cout << "Pole powierzchni: " << pole << std::endl;

@@ -16,6 +16,8 @@ int main() {
     konsola.wypiszObiektyZAktualnegoWezla();
     konsola.wypiszSzczegolyDlaObiektuZLisciaPoId();
     konsola.wypiszSzczegolyDlaObiektuZLisciaPoId();
+    konsola.modyfikujObiektZLisciaPoId();
+    konsola.wypiszSzczegolyDlaObiektuZLisciaPoId();
 
     return 0;
 }
