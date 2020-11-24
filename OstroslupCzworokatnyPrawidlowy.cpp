@@ -6,7 +6,7 @@
 #include "OstroslupCzworokatnyPrawidlowy.h"
 
 void OstroslupCzworokatnyPrawidlowy::obliczKrawedz() {
-    krawedz = sqrt(pow((bokA * sqrt(2) / 2), 2) + pow(wysokosc, 2));
+    krawedz = sqrt(pow((bokA * sqrt(2) / 2), 2) + pow(z, 2));
 }
 
 void OstroslupCzworokatnyPrawidlowy::obliczObwod() {
@@ -18,7 +18,7 @@ OstroslupCzworokatnyPrawidlowy::OstroslupCzworokatnyPrawidlowy(int kolor, std::s
                                                                double bokPodstawy,
                                                                double wysokosc)
         : FiguryGeometryczne(kolor), Punkt<double>(kolor, etykietaWierzcholka, 0, 0, wysokosc),
-          Kwadrat(kolor, bokPodstawy), wysokosc(wysokosc) {
+          Kwadrat(kolor, bokPodstawy){
     obliczKrawedz();
     obliczObwod();
     obliczPole();
@@ -47,7 +47,7 @@ void OstroslupCzworokatnyPrawidlowy::obliczPole() {
 }
 
 void OstroslupCzworokatnyPrawidlowy::obliczObjetosc() {
-    objetosc = bokA * bokA * wysokosc / 3.0;
+    objetosc = bokA * bokA * z / 3.0;
 }
 
 void OstroslupCzworokatnyPrawidlowy::modifykuj() {
@@ -89,7 +89,7 @@ void OstroslupCzworokatnyPrawidlowy::wypiszDane() {
     std::cout << "Obwod:" << getObwod() << std::endl;
     std::cout << "Pole powierzchni: " << pole << std::endl;
     std::cout << "Objetosc:" << objetosc << std::endl;
-    std::cout << "Wysokosc :" << wysokosc << std::endl;
+    std::cout << "Wysokosc :" << z << std::endl;
     std::cout << "Krawedz :" << krawedz << std::endl;
 }
 
@@ -99,5 +99,5 @@ void OstroslupCzworokatnyPrawidlowy::zapiszDoPliku(std::ofstream &plik) {
     plik << getEtykieta() << std::endl;
     plik << kolor << std::endl;
     plik << bokA << std::endl;
-    plik << wysokosc << std::endl;
+    plik << z << std::endl;
 }

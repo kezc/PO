@@ -16,7 +16,6 @@ private:
     void obliczKrawedz();
 
 protected:
-    double wysokosc;
     double objetosc;
 
     void obliczObwod() override;

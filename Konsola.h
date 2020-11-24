@@ -219,15 +219,13 @@ public:
                 }
                 break;
             default:
-                std::cout << "Dla aktualnego wezla nie moge utworzyc obiektu. Prosze przejsc do liscia." << std::endl;
+                std::cout << "Dla aktualnego wezla nie moge pokazac obiektu. Prosze przejsc do liscia." << std::endl;
         }
     }
 
     void modyfikujObiektZLisciaPoId(int id) {
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 Rownoboczny *rownoboczny;
                 if ((rownoboczny = menedzerFigur.znajdzRownobocznyPoId(id)) != nullptr) {
                     rownoboczny->modifykuj();
@@ -236,8 +234,6 @@ public:
                 }
                 break;
             case Wezel::InneTrojkaty:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 InneTrojkaty *inneTrojkaty;
                 if ((inneTrojkaty = menedzerFigur.znajdzInneTrojkatyPoId(id)) != nullptr) {
                     inneTrojkaty->modifykuj();
@@ -246,8 +242,6 @@ public:
                 }
                 break;
             case Wezel::InneCzworokaty:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 InneCzworokaty *inneCzworokaty;
                 if ((inneCzworokaty = menedzerFigur.znajdzCzworokatPoId(id)) != nullptr) {
                     inneCzworokaty->modifykuj();
@@ -256,8 +250,6 @@ public:
                 }
                 break;
             case Wezel::OstroslupTrojkatnyPrawidlowy:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy;
                 if ((ostroslupTrojkatnyPrawidlowy = menedzerFigur.znajdzOstroslupTrojkatnyPrawidlowyPoId(id)) !=
                     nullptr) {
@@ -267,8 +259,6 @@ public:
                 }
                 break;
             case Wezel::OstroslupCzworokatnyPrawidlowy:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy;
                 if ((ostroslupCzworokatnyPrawidlowy = menedzerFigur.znajdzOstroslupCzworokatnyPrawidlowyPoId(id)) !=
                     nullptr) {
@@ -286,28 +276,18 @@ public:
     void usunObiektZLisciaPoId(int id) {
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 menedzerFigur.usunRownoboczny(id);
                 break;
             case Wezel::InneTrojkaty:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 menedzerFigur.usunInneTrojkaty(id);
                 break;
             case Wezel::InneCzworokaty:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 menedzerFigur.usunInneCzworokaty(id);
                 break;
             case Wezel::OstroslupTrojkatnyPrawidlowy:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 menedzerFigur.usunOstroslupTrojkatnyPrawidlowy(id);
                 break;
             case Wezel::OstroslupCzworokatnyPrawidlowy:
-                std::cout << "Podaj id obiektu." << std::endl;
-                std::cin >> id;
                 menedzerFigur.usunOstroslupCzworokatnyPrawidlowy(id);
                 break;
             default:
