@@ -211,7 +211,6 @@ public:
                 dodajOstroslupTrojkatnyPrawidlowy(kolor, nazwa, bok, wysokosc, id);
             } else if (typ == "OstroslupCzworokatnyPrawidlowy") {
                 double bok, wysokosc;
-                std::string etykietaWierzcholka;
                 plik >> id;
                 plik >> nazwa;
                 plik >> kolor;
@@ -232,8 +231,8 @@ public:
             } else if (typ == "InneCzworokaty") {
                 double bokA, bokB, bokC, bokD;
                 plik >> id;
-                plik >> kolor;
                 plik >> nazwa;
+                plik >> kolor;
                 plik >> bokA;
                 plik >> bokB;
                 plik >> bokC;

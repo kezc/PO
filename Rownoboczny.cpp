@@ -49,6 +49,7 @@ void Rownoboczny::modifykuj() {
     std::cout << "1. Kolor" << std::endl;
     std::cout << "2. Bok" << std::endl;
     std::cout << "3. Nazwa" << std::endl;
+    std::cout << "4. Powieksz bok o jeden" << std::endl;
     int opcja;
     std::cin >> opcja;
     if (opcja == 1) {
@@ -60,9 +61,10 @@ void Rownoboczny::modifykuj() {
         std::cin >> nowyBok;
         ustawBok(nowyBok);
     } else if (opcja == 3) {
-        std::string nazwa;
         std::cout << "Podaj nowa nazwe obiektu" << std::endl;
         std::cin >> nazwa;
+    } else if (opcja == 4) {
+        ++(*this);
     } else {
         std::cout << "Nieznana operacja" << std::endl;
     }
@@ -84,5 +86,10 @@ void Rownoboczny::zapiszDoPliku(std::ofstream &plik) {
     plik << nazwa << std::endl;
     plik << kolor << std::endl;
     plik << bokA << std::endl;
+}
+
+Rownoboczny *Rownoboczny::operator++() {
+    ustawBok(bokA + 1);
+    return this;
 }
 

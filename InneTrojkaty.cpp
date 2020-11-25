@@ -49,7 +49,6 @@ void InneTrojkaty::modifykuj() {
         std::cin >> nowyBokA >> nowyBokB >> nowyBokC;
         ustawBoki(nowyBokA, nowyBokB, nowyBokC);
     } else if (opcja == 3) {
-        std::string nazwa;
         std::cout << "Podaj nowa nazwe obiektu" << std::endl;
         std::cin >> nazwa;
     } else {

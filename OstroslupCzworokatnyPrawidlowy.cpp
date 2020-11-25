@@ -72,7 +72,6 @@ void OstroslupCzworokatnyPrawidlowy::modifykuj() {
         std::cin >> nowaWysokosc;
         ustawWysokosc(nowaWysokosc);
     } else if (opcja == 4) {
-        std::string nazwa;
         std::cout << "Podaj nowa nazwe obiektu" << std::endl;
         std::cin >> nazwa;
     } else {

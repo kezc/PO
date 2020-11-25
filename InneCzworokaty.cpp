@@ -51,7 +51,6 @@ void InneCzworokaty::modifykuj() {
         std::cin >> nowyBokA >> nowyBokB >> nowyBokC >> nowyBokD;
         ustawBoki(nowyBokA, nowyBokB, nowyBokC, nowyBokD);
     } else if (opcja == 3) {
-        std::string nazwa;
         std::cout << "Podaj nowa nazwe obiektu" << std::endl;
         std::cin >> nazwa;
     } else {
