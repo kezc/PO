@@ -10,6 +10,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <set>
 #include "Punkt.h"
 #include "Trojkat.h"
 #include "Czworokat.h"
@@ -21,14 +22,9 @@
 
 class MenedzerFigur {
 private:
-    std::vector<FiguryGeometryczne *> liscie;
-    std::vector<Punkt<double> *> lisciePunkt;
-    std::vector<Trojkat *> liscieTrojkat;
-    std::vector<Czworokat *> liscieCzworokat;
     std::vector<Rownoboczny *> liscieRownoboczny;
     std::vector<InneTrojkaty *> liscieInneTrojkaty;
     std::vector<OstroslupTrojkatnyPrawidlowy *> liscieOstroslupTrojkatnyPrawidlowy;
-    std::vector<Kwadrat *> liscieKwadrat;
     std::vector<InneCzworokaty *> liscieInneCzworokaty;
     std::vector<OstroslupCzworokatnyPrawidlowy *> liscieOstroslupCzworokatnyPrawidlowy;
 
@@ -44,9 +40,7 @@ public:
         if (id > 0) ostroslupCzworokatnyPrawidlowy->setId(id);
 
         liscieOstroslupCzworokatnyPrawidlowy.push_back(ostroslupCzworokatnyPrawidlowy);
-        lisciePunkt.push_back(ostroslupCzworokatnyPrawidlowy);
         liscieOstroslupCzworokatnyPrawidlowy.push_back(ostroslupCzworokatnyPrawidlowy);
-        liscie.push_back(ostroslupCzworokatnyPrawidlowy);
     }
 
     void dodajRownoboczny(int kolor, std::string &nazwa, double bok, int id = -1) {
@@ -55,8 +49,6 @@ public:
         if (id > 0) rownoboczny->setId(id);
 
         liscieRownoboczny.push_back(rownoboczny);
-        liscieTrojkat.push_back(rownoboczny);
-        liscie.push_back(rownoboczny);
     }
 
     void dodajInneTrojkaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC,
@@ -66,8 +58,6 @@ public:
         if (id > 0) inneTrojkaty->setId(id);
 
         liscieInneTrojkaty.push_back(inneTrojkaty);
-        liscieTrojkat.push_back(inneTrojkaty);
-        liscie.push_back(inneTrojkaty);
     }
 
     void dodajOstroslupTrojkatnyPrawidlowy(int kolor,
@@ -81,9 +71,6 @@ public:
         if (id > 0) ostroslupTrojkatnyPrawidlowy->setId(id);
 
         liscieOstroslupTrojkatnyPrawidlowy.push_back(ostroslupTrojkatnyPrawidlowy);
-        lisciePunkt.push_back(ostroslupTrojkatnyPrawidlowy);
-        liscieTrojkat.push_back(ostroslupTrojkatnyPrawidlowy);
-        liscie.push_back(ostroslupTrojkatnyPrawidlowy);
     }
 
     void
@@ -94,8 +81,6 @@ public:
         if (id > 0) inneCzworokaty->setId(id);
 
         liscieInneCzworokaty.push_back(inneCzworokaty);
-        liscieCzworokat.push_back(inneCzworokaty);
-        liscie.push_back(inneCzworokaty);
     }
 
     bool usunInneCzworokaty(std::string &nazwa) {
@@ -105,11 +90,6 @@ public:
 
         liscieInneCzworokaty.erase(std::remove(liscieInneCzworokaty.begin(), liscieInneCzworokaty.end(), innyCzworokat),
                                    liscieInneCzworokaty.end());
-        liscieCzworokat.erase(
-                std::remove(liscieCzworokat.begin(), liscieCzworokat.end(), innyCzworokat),
-                liscieCzworokat.end());
-        liscie.erase(std::remove(liscie.begin(), liscie.end(), innyCzworokat),
-                     liscie.end());
         return true;
     }
 
@@ -132,12 +112,6 @@ public:
                 std::remove(liscieOstroslupTrojkatnyPrawidlowy.begin(), liscieOstroslupTrojkatnyPrawidlowy.end(),
                             ostroslupTrojkatnyPrawidlowy),
                 liscieOstroslupTrojkatnyPrawidlowy.end());
-        liscieTrojkat.erase(std::remove(liscieTrojkat.begin(), liscieTrojkat.end(), ostroslupTrojkatnyPrawidlowy),
-                            liscieTrojkat.end());
-        lisciePunkt.erase(std::remove(lisciePunkt.begin(), lisciePunkt.end(), ostroslupTrojkatnyPrawidlowy),
-                          lisciePunkt.end());
-        liscie.erase(std::remove(liscie.begin(), liscie.end(), ostroslupTrojkatnyPrawidlowy),
-                     liscie.end());
         return true;
     }
 
@@ -157,10 +131,6 @@ public:
 
         liscieInneTrojkaty.erase(std::remove(liscieInneTrojkaty.begin(), liscieInneTrojkaty.end(), inneTrojkaty),
                                  liscieInneTrojkaty.end());
-        liscieTrojkat.erase(std::remove(liscieTrojkat.begin(), liscieTrojkat.end(), inneTrojkaty),
-                            liscieTrojkat.end());
-        liscie.erase(std::remove(liscie.begin(), liscie.end(), inneTrojkaty),
-                     liscie.end());
         return true;
     }
 
@@ -180,10 +150,6 @@ public:
 
         liscieRownoboczny.erase(std::remove(liscieRownoboczny.begin(), liscieRownoboczny.end(), rownoboczny),
                                 liscieRownoboczny.end());
-        liscieTrojkat.erase(std::remove(liscieTrojkat.begin(), liscieTrojkat.end(), rownoboczny),
-                            liscieTrojkat.end());
-        liscie.erase(std::remove(liscie.begin(), liscie.end(), rownoboczny),
-                     liscie.end());
         return true;
     }
 
@@ -205,13 +171,6 @@ public:
                 std::remove(liscieOstroslupCzworokatnyPrawidlowy.begin(), liscieOstroslupCzworokatnyPrawidlowy.end(),
                             ostroslupCzworokatnyPrawidlowy),
                 liscieOstroslupCzworokatnyPrawidlowy.end());
-        liscieKwadrat.erase(std::remove(liscieKwadrat.begin(), liscieKwadrat.end(), ostroslupCzworokatnyPrawidlowy),
-                            liscieKwadrat.end());
-        liscieCzworokat.erase(
-                std::remove(liscieCzworokat.begin(), liscieCzworokat.end(), ostroslupCzworokatnyPrawidlowy),
-                liscieCzworokat.end());
-        liscie.erase(std::remove(liscie.begin(), liscie.end(), ostroslupCzworokatnyPrawidlowy),
-                     liscie.end());
         return true;
     }
 
@@ -226,9 +185,11 @@ public:
     }
 
     virtual ~MenedzerFigur() {
-        for (auto &element : liscie) {
+        std::vector<FiguryGeometryczne *> * liscie = getLiscie();
+        for (auto &element : *liscie) {
             delete element;
         }
+        delete liscie;
     }
 
     void odczytajZPliku(std::string &nazwaPliku) {
@@ -295,26 +256,54 @@ public:
     void zapiszDoPliku(std::string &nazwa) {
         std::ofstream plik;
         plik.open(nazwa);
-        for (auto element : liscie) {
+        std::vector<FiguryGeometryczne *> * liscie = getLiscie();
+        for (auto element : *liscie) {
             element->zapiszDoPliku(plik);
         }
+        delete liscie;
         plik.close();
     }
 
-    const std::vector<FiguryGeometryczne *> &getLiscie() const {
+    std::vector<FiguryGeometryczne *> *getLiscie() {
+        std::set<FiguryGeometryczne *> set;
+        for (auto element : liscieRownoboczny) set.insert(element);
+        for (auto element : liscieInneTrojkaty) set.insert(element);
+        for (auto element : liscieOstroslupTrojkatnyPrawidlowy) set.insert(element);
+        for (auto element : liscieInneCzworokaty) set.insert(element);
+        for (auto element : liscieOstroslupCzworokatnyPrawidlowy) set.insert(element);
+        auto *liscie = new std::vector<FiguryGeometryczne*>(set.begin(), set.end());
         return liscie;
     }
 
-    const std::vector<Punkt<double> *> &getLisciePunkt() const {
-        return lisciePunkt;
+    std::vector<Punkt<double> *> *getLisciePunkt() {
+        std::set<Punkt<double> *> set;
+        for (auto element : liscieOstroslupTrojkatnyPrawidlowy) set.insert(element);
+        for (auto element : liscieOstroslupCzworokatnyPrawidlowy) set.insert(element);
+        auto *liscie = new std::vector<Punkt<double> *>(set.begin(), set.end());
+        return liscie;
     }
 
-    const std::vector<Trojkat *> &getLiscieTrojkat() const {
-        return liscieTrojkat;
+    std::vector<Trojkat *> *getLiscieTrojkat() {
+        std::set<Trojkat *> set;
+        for (auto element : liscieRownoboczny) set.insert(element);
+        for (auto element : liscieInneTrojkaty) set.insert(element);
+        for (auto element : liscieOstroslupTrojkatnyPrawidlowy) set.insert(element);
+        auto *liscie = new std::vector<Trojkat*>(set.begin(), set.end());
+        return liscie;
     }
 
-    const std::vector<Czworokat *> &getLiscieCzworokat() const {
-        return liscieCzworokat;
+    const std::vector<Czworokat *> *getLiscieCzworokat() {
+        std::set<Czworokat *> set;
+        for (auto element : liscieInneCzworokaty) set.insert(element);
+        for (auto element : liscieOstroslupCzworokatnyPrawidlowy) set.insert(element);
+        auto *liscie = new std::vector<Czworokat *>(set.begin(), set.end());
+        return liscie;
+    }
+
+    const std::vector<Kwadrat *> *getLiscieKwadrat() {
+        auto *liscie = new std::vector<Kwadrat *>();
+        for (auto element : liscieOstroslupCzworokatnyPrawidlowy) liscie->push_back(element);
+        return liscie;
     }
 
     const std::vector<Rownoboczny *> &getLiscieRownoboczny() const {
@@ -327,10 +316,6 @@ public:
 
     const std::vector<OstroslupTrojkatnyPrawidlowy *> &getLiscieOstroslupTrojkatnyPrawidlowy() const {
         return liscieOstroslupTrojkatnyPrawidlowy;
-    }
-
-    const std::vector<Kwadrat *> &getLiscieKwadrat() const {
-        return liscieKwadrat;
     }
 
     const std::vector<InneCzworokaty *> &getLiscieInneCzworokaty() const {

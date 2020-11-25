@@ -417,41 +417,51 @@ public:
 
     void wypiszPunkty() {
         std::cout << "Wszystkie punkty:" << std::endl;
-        for (auto &element : menedzerFigur.getLisciePunkt()) {
+        std::vector<Punkt<double> *> *punkt = menedzerFigur.getLisciePunkt();
+        for (auto &element : *punkt) {
             std::cout << "Punkt o nazwie: " << element->getNazwa() << std::endl;
         }
+        delete punkt;
         std::cout << std::endl;
     }
 
     void wypiszTrojkaty() {
         std::cout << "Wszystkie trojkaty:" << std::endl;
-        for (auto &element : menedzerFigur.getLisciePunkt()) {
+        std::vector<Trojkat *> *liscieTrojkat = menedzerFigur.getLiscieTrojkat();
+        for (auto &element : *liscieTrojkat) {
             std::cout << "Trojkat o nazwie: " << element->getNazwa() << std::endl;
         }
+        delete liscieTrojkat;
         std::cout << std::endl;
     }
 
     void wypiszCzworokaty() {
         std::cout << "Wszystkie Czworokaty:" << std::endl;
-        for (auto &element : menedzerFigur.getLiscieCzworokat()) {
+        const std::vector<Czworokat *> *liscieCzworokat = menedzerFigur.getLiscieCzworokat();
+        for (auto &element : *liscieCzworokat) {
             std::cout << "Czworokat o nazwie: " << element->getNazwa() << std::endl;
         }
+        delete liscieCzworokat;
         std::cout << std::endl;
     }
 
     void wypiszKwadraty() {
         std::cout << "Wszystkie kwadraty:" << std::endl;
-        for (auto &element : menedzerFigur.getLiscieKwadrat()) {
+        const std::vector<Kwadrat *> *liscieKwadrat = menedzerFigur.getLiscieKwadrat();
+        for (auto &element : *liscieKwadrat) {
             std::cout << "Kwadrat o nazwie: " << element->getNazwa() << std::endl;
         }
+        delete liscieKwadrat;
         std::cout << std::endl;
     }
 
     void wypiszWszystko() {
         std::cout << "Wszystkie figury:" << std::endl;
-        for (auto &element : menedzerFigur.getLiscie()) {
+        std::vector<FiguryGeometryczne *> *liscie = menedzerFigur.getLiscie();
+        for (auto &element : *liscie) {
             std::cout << "Figura o nazwie: " << element->getNazwa() << std::endl;
         }
+        delete liscie;
         std::cout << std::endl;
     }
 
