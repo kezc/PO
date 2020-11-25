@@ -24,7 +24,7 @@ protected:
     void obliczPromienOkreguOpisanego();
 
 public:
-    Rownoboczny(int kolor, double bok);
+    Rownoboczny(int kolor,std::string &nazwa, double bok);
 
     void ustawBok(double bok);
 

@@ -24,7 +24,7 @@ protected:
 
 public:
 
-    OstroslupCzworokatnyPrawidlowy(int kolor, std::string &etykietaWierzcholka, double bokPodstawy,
+    OstroslupCzworokatnyPrawidlowy(int kolor, std::string &nazwa, double bokPodstawy,
                                    double wysokosc);
 
     void ustawBok(double bok) override;

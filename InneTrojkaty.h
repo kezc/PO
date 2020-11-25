@@ -19,7 +19,7 @@ protected:
     void obliczNajkrotszyBok();
 
 public:
-    InneTrojkaty(int kolor, double bokA, double bokB, double bokC);
+    InneTrojkaty(int kolor,std::string &nazwa, double bokA, double bokB, double bokC);
 
 
 public:

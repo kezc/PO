@@ -15,11 +15,11 @@ void OstroslupTrojkatnyPrawidlowy::obliczKrawedz() {
 }
 
 
-OstroslupTrojkatnyPrawidlowy::OstroslupTrojkatnyPrawidlowy(int kolor, std::string &etykietaWierzcholka,
+OstroslupTrojkatnyPrawidlowy::OstroslupTrojkatnyPrawidlowy(int kolor, std::string &nazwa,
                                                            double bokPodstawy,
                                                            double wysokosc)
-        : FiguryGeometryczne(kolor), Punkt<double>(kolor, etykietaWierzcholka, 0, 0, wysokosc),
-          Trojkat(kolor, bokPodstawy, bokPodstawy, bokPodstawy) {
+        : FiguryGeometryczne(kolor, nazwa), Punkt<double>(kolor, nazwa, 0, 0, wysokosc),
+          Trojkat(kolor, nazwa, bokPodstawy, bokPodstawy, bokPodstawy) {
     obliczKrawedz();
     obliczObwod();
     obliczPole();
@@ -58,7 +58,7 @@ void OstroslupTrojkatnyPrawidlowy::modifykuj() {
     std::cout << "1. Kolor" << std::endl;
     std::cout << "2. Bok podstawy" << std::endl;
     std::cout << "3. Wysokosc" << std::endl;
-    std::cout << "4. Etykiete wierzcholka" << std::endl;
+    std::cout << "4. Nazwe" << std::endl;
 
     int opcja;
     std::cin >> opcja;
@@ -76,10 +76,9 @@ void OstroslupTrojkatnyPrawidlowy::modifykuj() {
         std::cin >> nowaWysokosc;
         ustawWysokosc(nowaWysokosc);
     } else if (opcja == 4) {
-        std::string nowaEtykieta;
-        std::cout << "Podaj nowa etykiete" << std::endl;
-        std::cin >> nowaEtykieta;
-        ustawEtykiete(nowaEtykieta);
+        std::string nazwa;
+        std::cout << "Podaj nowa nazwe obiektu" << std::endl;
+        std::cin >> nazwa;
     } else {
         std::cout << "Nieznana operacja" << std::endl;
     }
@@ -87,9 +86,9 @@ void OstroslupTrojkatnyPrawidlowy::modifykuj() {
 
 void OstroslupTrojkatnyPrawidlowy::wypiszDane() {
     std::cout << "Id:" << getId() << std::endl;
+    std::cout << "Nazwa: " << nazwa << std::endl;
     std::cout << "Bok podstawy: " << bokA << std::endl;
     std::cout << "Kolor: " << kolor << std::endl;
-    std::cout << "Etykieta:" << getEtykieta() << std::endl;
     std::cout << "Obwod:" << getObwod() << std::endl;
     std::cout << "Pole powierzchni: " << pole << std::endl;
     std::cout << "Objetosc:" << objetosc << std::endl;
@@ -100,7 +99,7 @@ void OstroslupTrojkatnyPrawidlowy::wypiszDane() {
 void OstroslupTrojkatnyPrawidlowy::zapiszDoPliku(std::ofstream &plik) {
     plik << "OstroslupTrojkatnyPrawidlowy" << std::endl;
     plik << getId() << std::endl;
-    plik << getEtykieta() << std::endl;
+    plik << nazwa << std::endl;
     plik << kolor << std::endl;
     plik << bokA << std::endl;
     plik << z << std::endl;

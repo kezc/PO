@@ -21,7 +21,7 @@ public:
 
     double getIloczynDlugosciBokow() const;
 
-    InneCzworokaty(int kolor, double bokA, double bokB, double bokC, double bokD);
+    InneCzworokaty(int kolor,std::string &nazwa, double bokA, double bokB, double bokC, double bokD);
 
     void modifykuj() override;
 

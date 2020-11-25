@@ -20,7 +20,7 @@ public:
 
     virtual void ustawBok(double bok);
 
-    Kwadrat(int kolor, double bok);
+    Kwadrat(int kolor,std::string &nazwa, double bok);
 
     double getPole();
 

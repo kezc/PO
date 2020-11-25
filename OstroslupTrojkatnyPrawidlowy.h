@@ -23,7 +23,7 @@ protected:
     void obliczPole() override;
 
 public:
-    OstroslupTrojkatnyPrawidlowy(int kolor, std::string &etykietaWierzcholka, double bokPodstawy, double wysokosc);
+    OstroslupTrojkatnyPrawidlowy(int kolor, std::string &nazwa, double bokPodstawy, double wysokosc);
 
     void ustawBok(double bok);
 

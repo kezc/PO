@@ -12,20 +12,12 @@
 template<typename T>
 class Punkt : public virtual FiguryGeometryczne {
 private:
-    std::string etykieta;
+    // dodaj cos
 protected:
     T x;
     T y;
     T z;
 public:
-    const std::string &getName() const {
-        return etykieta;
-    }
-
-    void ustawEtykiete(const std::string &etykieta) {
-        Punkt::etykieta = etykieta;
-    }
-
     void ustawNoweKoordynaty(T x, T y, T z) {
         Punkt::x = x;
         Punkt::y = y;
@@ -44,11 +36,7 @@ public:
         return z;
     }
 
-    const std::string &getEtykieta() const {
-        return etykieta;
-    }
-
-    Punkt(int kolor, std::string &etykieta, T x, T y, T z) : FiguryGeometryczne(kolor), etykieta(etykieta), x(x),
+    Punkt(int kolor, std::string &nazwa, T x, T y, T z) : FiguryGeometryczne(kolor, nazwa), x(x),
                                                              y(y), z(z) {}
 
 };

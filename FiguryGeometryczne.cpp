@@ -17,7 +17,7 @@ int FiguryGeometryczne::getId() const {
     return id;
 }
 
-FiguryGeometryczne::FiguryGeometryczne(int kolor) : kolor(kolor) {
+FiguryGeometryczne::FiguryGeometryczne(int kolor, std::string &nazwa) : kolor(kolor), nazwa(nazwa) {
     id = licznik++;
 }
 
@@ -27,4 +27,8 @@ void FiguryGeometryczne::ustawLicznik(int licznik) {
 
 void FiguryGeometryczne::setId(int id) {
     FiguryGeometryczne::id = id;
+}
+
+const std::string &FiguryGeometryczne::getNazwa() const {
+    return nazwa;
 }

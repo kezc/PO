@@ -34,12 +34,12 @@ private:
 
 public:
     void dodajOstroslupCzworokatnyPrawidlowy(int kolor,
+                                             std::string &nazwa,
                                              double bokPodstawy,
                                              double wysokosc,
-                                             std::string etykietaWierzcholka,
                                              int id = -1) {
         auto *ostroslupCzworokatnyPrawidlowy =
-                new OstroslupCzworokatnyPrawidlowy(kolor, etykietaWierzcholka, bokPodstawy, wysokosc);
+                new OstroslupCzworokatnyPrawidlowy(kolor, nazwa, bokPodstawy, wysokosc);
 
         if (id > 0) ostroslupCzworokatnyPrawidlowy->setId(id);
 
@@ -49,8 +49,8 @@ public:
         liscie.push_back(ostroslupCzworokatnyPrawidlowy);
     }
 
-    void dodajRownoboczny(int kolor, double bok, int id = -1) {
-        auto *rownoboczny = new Rownoboczny(kolor, bok);
+    void dodajRownoboczny(int kolor, std::string &nazwa, double bok, int id = -1) {
+        auto *rownoboczny = new Rownoboczny(kolor, nazwa, bok);
 
         if (id > 0) rownoboczny->setId(id);
 
@@ -59,9 +59,9 @@ public:
         liscie.push_back(rownoboczny);
     }
 
-    void dodajInneTrojkaty(int kolor, double bokA, double bokB, double bokC,
+    void dodajInneTrojkaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC,
                            int id = -1) {
-        auto *inneTrojkaty = new InneTrojkaty(kolor, bokA, bokB, bokC);
+        auto *inneTrojkaty = new InneTrojkaty(kolor, nazwa, bokA, bokB, bokC);
 
         if (id > 0) inneTrojkaty->setId(id);
 
@@ -71,11 +71,12 @@ public:
     }
 
     void dodajOstroslupTrojkatnyPrawidlowy(int kolor,
+                                           std::string nazwa,
                                            double bokPodstawy,
                                            double wysokosc,
-                                           std::string etykietaWierzcholka, int id = -1) {
+                                           int id = -1) {
         auto *ostroslupTrojkatnyPrawidlowy =
-                new OstroslupTrojkatnyPrawidlowy(kolor, etykietaWierzcholka, bokPodstawy, wysokosc);
+                new OstroslupTrojkatnyPrawidlowy(kolor, nazwa, bokPodstawy, wysokosc);
 
         if (id > 0) ostroslupTrojkatnyPrawidlowy->setId(id);
 
@@ -85,9 +86,10 @@ public:
         liscie.push_back(ostroslupTrojkatnyPrawidlowy);
     }
 
-    void dodajInneCzworokaty(int kolor, double bokA, double bokB, double bokC, double bokD, int id = -1
+    void
+    dodajInneCzworokaty(int kolor, std::string nazwa, double bokA, double bokB, double bokC, double bokD, int id = -1
     ) {
-        auto *inneCzworokaty = new InneCzworokaty(kolor, bokA, bokB, bokC, bokD);
+        auto *inneCzworokaty = new InneCzworokaty(kolor, nazwa, bokA, bokB, bokC, bokD);
 
         if (id > 0) inneCzworokaty->setId(id);
 
@@ -96,8 +98,8 @@ public:
         liscie.push_back(inneCzworokaty);
     }
 
-    bool usunInneCzworokaty(int id) {
-        InneCzworokaty *innyCzworokat = znajdzCzworokatPoId(id);
+    bool usunInneCzworokaty(std::string &nazwa) {
+        InneCzworokaty *innyCzworokat = znajdzCzworokat(nazwa);
 
         if (innyCzworokat == nullptr) return false;
 
@@ -111,10 +113,10 @@ public:
         return true;
     }
 
-    InneCzworokaty *znajdzCzworokatPoId(int id) const {
+    InneCzworokaty *znajdzCzworokat(std::string &nazwa) const {
         InneCzworokaty *innyCzworokat = nullptr;
         for (auto &element : liscieInneCzworokaty) {
-            if (element->getId() == id) {
+            if (element->getNazwa() == nazwa) {
                 innyCzworokat = element;
             }
         }
@@ -122,8 +124,8 @@ public:
     }
 
 
-    bool usunOstroslupTrojkatnyPrawidlowy(int id) {
-        OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = znajdzOstroslupTrojkatnyPrawidlowyPoId(id);
+    bool usunOstroslupTrojkatnyPrawidlowy(std::string &nazwa) {
+        OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = znajdzOstroslupTrojkatnyPrawidlowy(nazwa);
         if (ostroslupTrojkatnyPrawidlowy == nullptr) return false;
 
         liscieOstroslupTrojkatnyPrawidlowy.erase(
@@ -139,18 +141,18 @@ public:
         return true;
     }
 
-    OstroslupTrojkatnyPrawidlowy *znajdzOstroslupTrojkatnyPrawidlowyPoId(int id) const {
+    OstroslupTrojkatnyPrawidlowy *znajdzOstroslupTrojkatnyPrawidlowy(std::string &nazwa) const {
         OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = nullptr;
         for (auto &element : liscieOstroslupTrojkatnyPrawidlowy) {
-            if (element->getId() == id) {
+            if (element->getNazwa() == nazwa) {
                 ostroslupTrojkatnyPrawidlowy = element;
             }
         }
         return ostroslupTrojkatnyPrawidlowy;
     }
 
-    bool usunInneTrojkaty(int id) {
-        InneTrojkaty *inneTrojkaty = znajdzInneTrojkatyPoId(id);
+    bool usunInneTrojkaty(std::string &nazwa) {
+        InneTrojkaty *inneTrojkaty = znajdzInneTrojkaty(nazwa);
         if (inneTrojkaty == nullptr) return false;
 
         liscieInneTrojkaty.erase(std::remove(liscieInneTrojkaty.begin(), liscieInneTrojkaty.end(), inneTrojkaty),
@@ -162,18 +164,18 @@ public:
         return true;
     }
 
-    InneTrojkaty *znajdzInneTrojkatyPoId(int id) const {
+    InneTrojkaty *znajdzInneTrojkaty(std::string &nazwa) const {
         InneTrojkaty *inneTrojkaty = nullptr;
         for (auto &element : liscieInneTrojkaty) {
-            if (element->getId() == id) {
+            if (element->getNazwa() == nazwa) {
                 inneTrojkaty = element;
             }
         }
         return inneTrojkaty;
     }
 
-    bool usunRownoboczny(int id) {
-        Rownoboczny *rownoboczny = znajdzRownobocznyPoId(id);
+    bool usunRownoboczny(std::string &nazwa) {
+        Rownoboczny *rownoboczny = znajdzRownoboczny(nazwa);
         if (rownoboczny == nullptr) return false;
 
         liscieRownoboczny.erase(std::remove(liscieRownoboczny.begin(), liscieRownoboczny.end(), rownoboczny),
@@ -185,18 +187,18 @@ public:
         return true;
     }
 
-    Rownoboczny *znajdzRownobocznyPoId(int id) const {
+    Rownoboczny *znajdzRownoboczny(std::string &nazwa) const {
         Rownoboczny *rownoboczny = nullptr;
         for (auto &element : liscieRownoboczny) {
-            if (element->getId() == id) {
+            if (element->getNazwa() == nazwa) {
                 rownoboczny = element;
             }
         }
         return rownoboczny;
     }
 
-    bool usunOstroslupCzworokatnyPrawidlowy(int id) {
-        OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = znajdzOstroslupCzworokatnyPrawidlowyPoId(id);
+    bool usunOstroslupCzworokatnyPrawidlowy(std::string &nazwa) {
+        OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = znajdzOstroslupCzworokatnyPrawidlowy(nazwa);
         if (ostroslupCzworokatnyPrawidlowy == nullptr) return false;
 
         liscieOstroslupCzworokatnyPrawidlowy.erase(
@@ -213,10 +215,10 @@ public:
         return true;
     }
 
-    OstroslupCzworokatnyPrawidlowy *znajdzOstroslupCzworokatnyPrawidlowyPoId(int id) const {
+    OstroslupCzworokatnyPrawidlowy *znajdzOstroslupCzworokatnyPrawidlowy(std::string &nazwa) const {
         OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = nullptr;
         for (auto &element : liscieOstroslupCzworokatnyPrawidlowy) {
-            if (element->getId() == id) {
+            if (element->getNazwa() == nazwa) {
                 ostroslupCzworokatnyPrawidlowy = element;
             }
         }
@@ -229,63 +231,62 @@ public:
         }
     }
 
-    void odczytajZPliku(std::string &nazwa) {
+    void odczytajZPliku(std::string &nazwaPliku) {
         std::ifstream plik;
-        plik.open(nazwa);
+        plik.open(nazwaPliku);
         std::string typ;
         int maxId = 0;
+        int id, kolor;
+        std::string nazwa;
         while (plik >> typ) {
             if (typ == "OstroslupTrojkatnyPrawidlowy") {
-                int id, kolor;
                 double bok, wysokosc;
-                std::string etykietaWierzcholka;
                 plik >> id;
-                plik >> etykietaWierzcholka;
+                plik >> nazwa;
                 plik >> kolor;
                 plik >> bok;
                 plik >> wysokosc;
                 if (id > maxId) maxId = id;
-                dodajOstroslupTrojkatnyPrawidlowy(kolor, bok, wysokosc, etykietaWierzcholka, id);
+                dodajOstroslupTrojkatnyPrawidlowy(kolor, nazwa, bok, wysokosc, id);
             } else if (typ == "OstroslupCzworokatnyPrawidlowy") {
-                int id, kolor;
                 double bok, wysokosc;
                 std::string etykietaWierzcholka;
                 plik >> id;
-                plik >> etykietaWierzcholka;
+                plik >> nazwa;
                 plik >> kolor;
                 plik >> bok;
                 plik >> wysokosc;
                 if (id > maxId) maxId = id;
-                dodajOstroslupCzworokatnyPrawidlowy(kolor, bok, wysokosc, etykietaWierzcholka, id);
+                dodajOstroslupCzworokatnyPrawidlowy(kolor, nazwa, bok, wysokosc, id);
             } else if (typ == "InneTrojkaty") {
-                int id, kolor;
                 double bokA, bokB, bokC;
                 plik >> id;
+                plik >> nazwa;
                 plik >> kolor;
                 plik >> bokA;
                 plik >> bokB;
                 plik >> bokC;
                 if (id > maxId) maxId = id;
-                dodajInneTrojkaty(kolor, bokA, bokB, bokC, id);
+                dodajInneTrojkaty(kolor, nazwa, bokA, bokB, bokC, id);
             } else if (typ == "InneCzworokaty") {
-                int id, kolor;
                 double bokA, bokB, bokC, bokD;
                 plik >> id;
                 plik >> kolor;
+                plik >> nazwa;
                 plik >> bokA;
                 plik >> bokB;
                 plik >> bokC;
                 plik >> bokD;
                 if (id > maxId) maxId = id;
-                dodajInneCzworokaty(kolor, bokA, bokB, bokC, bokD, id);
+                dodajInneCzworokaty(kolor, nazwa, bokA, bokB, bokC, bokD, id);
             } else if (typ == "Rownoboczny") {
-                int id, kolor;
                 double bok;
                 plik >> id;
+                plik >> nazwa;
                 plik >> kolor;
                 plik >> bok;
                 if (id > maxId) maxId = id;
-                dodajRownoboczny(kolor, bok, id);
+                dodajRownoboczny(kolor, nazwa, bok, id);
             }
         }
         FiguryGeometryczne::ustawLicznik(maxId + 1);

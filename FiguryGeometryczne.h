@@ -14,12 +14,13 @@ class FiguryGeometryczne {
     int id;
 protected:
     int kolor;
+    std::string nazwa;
 public:
     int getKolor() const;
 
     void ustawKolor(int kolor);
 
-    FiguryGeometryczne(int kolor);
+    FiguryGeometryczne(int kolor, std::string &nazwa);
 
     int getId() const;
 
@@ -34,6 +35,8 @@ public:
     virtual ~FiguryGeometryczne() = default;
 
     static void ustawLicznik(int licznik);
+
+    const std::string &getNazwa() const;
 };
 
 

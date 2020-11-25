@@ -30,7 +30,7 @@ public:
 
     void ustawBoki(double bokA, double bokB, double bokC, double bokD);
 
-    Czworokat(int kolor, double bokA, double bokB, double bokC, double bokD);
+    Czworokat(int kolor,std::string &nazwa, double bokA, double bokB, double bokC, double bokD);
 };
 
 

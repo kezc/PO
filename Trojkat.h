@@ -21,7 +21,7 @@ protected:
     void ustawObwod(double obwod);
 
 public:
-    Trojkat(int kolor, double bokA, double bokB, double bokC);
+    Trojkat(int kolor, std::string &nazwa, double bokA, double bokB, double bokC);
 
     double getObwod();
 

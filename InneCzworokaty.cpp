@@ -17,10 +17,10 @@ void InneCzworokaty::obliczIloczynDlugosciBokow() {
     iloczynDlugosciBokow = bokA * bokB * bokC * bokD;
 }
 
-InneCzworokaty::InneCzworokaty(int kolor, double bokA, double bokB, double bokC, double bokD)
-        : FiguryGeometryczne(kolor), Czworokat(kolor, bokA,
-                                               bokB, bokC,
-                                               bokD) {
+InneCzworokaty::InneCzworokaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC, double bokD)
+        : FiguryGeometryczne(kolor, nazwa), Czworokat(kolor, nazwa, bokA,
+                                                      bokB, bokC,
+                                                      bokD) {
     obliczObwod();
     obliczIloczynDlugosciBokow();
     obliczSredniaDlugoscBoku();
@@ -38,6 +38,8 @@ void InneCzworokaty::modifykuj() {
     std::cout << "Co chcesz zmienić?" << std::endl;
     std::cout << "1. Kolor" << std::endl;
     std::cout << "2. Boki" << std::endl;
+    std::cout << "3. Nazwa" << std::endl;
+
     int opcja;
     std::cin >> opcja;
     if (opcja == 1) {
@@ -48,6 +50,10 @@ void InneCzworokaty::modifykuj() {
         std::cout << "Podaj nowe długości boków:" << std::endl;
         std::cin >> nowyBokA >> nowyBokB >> nowyBokC >> nowyBokD;
         ustawBoki(nowyBokA, nowyBokB, nowyBokC, nowyBokD);
+    } else if (opcja == 3) {
+        std::string nazwa;
+        std::cout << "Podaj nowa nazwe obiektu" << std::endl;
+        std::cin >> nazwa;
     } else {
         std::cout << "Nieznana operacja" << std::endl;
     }
@@ -56,6 +62,7 @@ void InneCzworokaty::modifykuj() {
 
 void InneCzworokaty::wypiszDane() {
     std::cout << "Id: " << getId() << std::endl;
+    std::cout << "Nazwa: " << nazwa << std::endl;
     std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << ", bok D:" << bokD << std::endl;
     std::cout << "Kolor: " << kolor << std::endl;
     std::cout << "Obwod: " << getObwod() << std::endl;
@@ -67,6 +74,7 @@ void InneCzworokaty::wypiszDane() {
 void InneCzworokaty::zapiszDoPliku(std::ofstream &plik) {
     plik << "InneCzworokaty" << std::endl;
     plik << getId() << std::endl;
+    plik << nazwa << std::endl;
     plik << kolor << std::endl;
     plik << bokA << std::endl;
     plik << bokB << std::endl;

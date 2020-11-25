@@ -4,7 +4,7 @@
 
 #include "Kwadrat.h"
 
-Kwadrat::Kwadrat(int kolor, double bok) : FiguryGeometryczne(kolor), Czworokat(kolor, bok, bok, bok, bok) {
+Kwadrat::Kwadrat(int kolor,std::string &nazwa, double bok) : FiguryGeometryczne(kolor, nazwa), Czworokat(kolor, nazwa, bok, bok, bok, bok) {
     obliczPole();
     obliczObwod();
 }

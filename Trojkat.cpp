@@ -5,7 +5,7 @@
 #include <tgmath.h>
 #include "Trojkat.h"
 
-Trojkat::Trojkat(int kolor, double bokA, double bokB, double bokC) : FiguryGeometryczne(kolor), bokA(bokA), bokB(bokB),
+Trojkat::Trojkat(int kolor,std::string &nazwa, double bokA, double bokB, double bokC) : FiguryGeometryczne(kolor, nazwa), bokA(bokA), bokB(bokB),
                                                                      bokC(bokC) {
     obliczObwod();
     obliczPole();

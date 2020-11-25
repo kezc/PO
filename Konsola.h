@@ -49,22 +49,22 @@ public:
             } else if (option == "MO") {
                 utworzObiektDlaAktualnegoLiscia();
             } else if (option == "DO") {
-                int id;
-                std::cin >> id;
-                usunObiektZLisciaPoId(id);
+                std::string nazwa;
+                std::cin >> nazwa;
+                usunObiektZLiscia(nazwa);
             } else if (option == "MDO") {
-                int id;
-                std::cin >> id;
-                modyfikujObiektZLisciaPoId(id);
+                std::string nazwa;
+                std::cin >> nazwa;
+                modyfikujObiektZLiscia(nazwa);
             } else if (option == "DIR") {
                 wypiszObiektyZAktualnegoWezla();
             } else if (option == "SHOW") {
-                int id;
-                std::cin >> id;
-                wypiszSzczegolyDlaObiektuZLisciaPoId(id);
+                std::string nazwa;
+                std::cin >> nazwa;
+                wypiszSzczegolyDlaObiektuZLiscia(nazwa);
             } else if (option == "SAVE") {
                 zapiszFigury();
-            } else {
+            } else if (!option.empty()) {
                 std::cout << "Nieznana komenda." << std::endl;
             };
         }
@@ -174,44 +174,44 @@ public:
         }
     }
 
-    void wypiszSzczegolyDlaObiektuZLisciaPoId(int id) {
+    void wypiszSzczegolyDlaObiektuZLiscia(std::string &nazwa) {
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
                 Rownoboczny *rownoboczny;
-                if ((rownoboczny = menedzerFigur.znajdzRownobocznyPoId(id)) != nullptr) {
+                if ((rownoboczny = menedzerFigur.znajdzRownoboczny(nazwa)) != nullptr) {
                     rownoboczny->wypiszDane();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
                 }
                 break;
             case Wezel::InneTrojkaty:
                 InneTrojkaty *inneTrojkaty;
-                if ((inneTrojkaty = menedzerFigur.znajdzInneTrojkatyPoId(id)) != nullptr) {
+                if ((inneTrojkaty = menedzerFigur.znajdzInneTrojkaty(nazwa)) != nullptr) {
                     inneTrojkaty->wypiszDane();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
                 }
                 break;
             case Wezel::InneCzworokaty:
                 InneCzworokaty *inneCzworokaty;
-                if ((inneCzworokaty = menedzerFigur.znajdzCzworokatPoId(id)) != nullptr) {
+                if ((inneCzworokaty = menedzerFigur.znajdzCzworokat(nazwa)) != nullptr) {
                     inneCzworokaty->wypiszDane();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
                 }
                 break;
             case Wezel::OstroslupTrojkatnyPrawidlowy:
                 OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy;
-                if ((ostroslupTrojkatnyPrawidlowy = menedzerFigur.znajdzOstroslupTrojkatnyPrawidlowyPoId(id)) !=
+                if ((ostroslupTrojkatnyPrawidlowy = menedzerFigur.znajdzOstroslupTrojkatnyPrawidlowy(nazwa)) !=
                     nullptr) {
                     ostroslupTrojkatnyPrawidlowy->wypiszDane();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
                 }
                 break;
             case Wezel::OstroslupCzworokatnyPrawidlowy:
                 OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy;
-                if ((ostroslupCzworokatnyPrawidlowy = menedzerFigur.znajdzOstroslupCzworokatnyPrawidlowyPoId(id)) !=
+                if ((ostroslupCzworokatnyPrawidlowy = menedzerFigur.znajdzOstroslupCzworokatnyPrawidlowy(nazwa)) !=
                     nullptr) {
                     ostroslupCzworokatnyPrawidlowy->wypiszDane();
                 } else {
@@ -223,48 +223,48 @@ public:
         }
     }
 
-    void modyfikujObiektZLisciaPoId(int id) {
+    void modyfikujObiektZLiscia(std::string &nazwa) {
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
                 Rownoboczny *rownoboczny;
-                if ((rownoboczny = menedzerFigur.znajdzRownobocznyPoId(id)) != nullptr) {
+                if ((rownoboczny = menedzerFigur.znajdzRownoboczny(nazwa)) != nullptr) {
                     rownoboczny->modifykuj();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
                 }
                 break;
             case Wezel::InneTrojkaty:
                 InneTrojkaty *inneTrojkaty;
-                if ((inneTrojkaty = menedzerFigur.znajdzInneTrojkatyPoId(id)) != nullptr) {
+                if ((inneTrojkaty = menedzerFigur.znajdzInneTrojkaty(nazwa)) != nullptr) {
                     inneTrojkaty->modifykuj();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
                 }
                 break;
             case Wezel::InneCzworokaty:
                 InneCzworokaty *inneCzworokaty;
-                if ((inneCzworokaty = menedzerFigur.znajdzCzworokatPoId(id)) != nullptr) {
+                if ((inneCzworokaty = menedzerFigur.znajdzCzworokat(nazwa)) != nullptr) {
                     inneCzworokaty->modifykuj();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
                 }
                 break;
             case Wezel::OstroslupTrojkatnyPrawidlowy:
                 OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy;
-                if ((ostroslupTrojkatnyPrawidlowy = menedzerFigur.znajdzOstroslupTrojkatnyPrawidlowyPoId(id)) !=
+                if ((ostroslupTrojkatnyPrawidlowy = menedzerFigur.znajdzOstroslupTrojkatnyPrawidlowy(nazwa)) !=
                     nullptr) {
                     ostroslupTrojkatnyPrawidlowy->modifykuj();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektuo takiej nazwie." << std::endl;
                 }
                 break;
             case Wezel::OstroslupCzworokatnyPrawidlowy:
                 OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy;
-                if ((ostroslupCzworokatnyPrawidlowy = menedzerFigur.znajdzOstroslupCzworokatnyPrawidlowyPoId(id)) !=
+                if ((ostroslupCzworokatnyPrawidlowy = menedzerFigur.znajdzOstroslupCzworokatnyPrawidlowy(nazwa)) !=
                     nullptr) {
                     ostroslupCzworokatnyPrawidlowy->modifykuj();
                 } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
                 }
                 break;
             default:
@@ -273,22 +273,22 @@ public:
         }
     }
 
-    void usunObiektZLisciaPoId(int id) {
+    void usunObiektZLiscia(std::string &nazwa) {
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
-                menedzerFigur.usunRownoboczny(id);
+                menedzerFigur.usunRownoboczny(nazwa);
                 break;
             case Wezel::InneTrojkaty:
-                menedzerFigur.usunInneTrojkaty(id);
+                menedzerFigur.usunInneTrojkaty(nazwa);
                 break;
             case Wezel::InneCzworokaty:
-                menedzerFigur.usunInneCzworokaty(id);
+                menedzerFigur.usunInneCzworokaty(nazwa);
                 break;
             case Wezel::OstroslupTrojkatnyPrawidlowy:
-                menedzerFigur.usunOstroslupTrojkatnyPrawidlowy(id);
+                menedzerFigur.usunOstroslupTrojkatnyPrawidlowy(nazwa);
                 break;
             case Wezel::OstroslupCzworokatnyPrawidlowy:
-                menedzerFigur.usunOstroslupCzworokatnyPrawidlowy(id);
+                menedzerFigur.usunOstroslupCzworokatnyPrawidlowy(nazwa);
                 break;
             default:
                 std::cout << "Dla aktualnego wezla nie moge zmodyfikowac obiektu. Prosze przejsc do liscia."
@@ -300,10 +300,9 @@ public:
         int kolor;
         double bokPodstawy;
         double wysokosc;
-        std::string etykietaWierzcholka;
+        std::string nazwa;
 
-        std::cout << "Podaj etykiete wierzcholka" << std::endl;
-        std::cin >> etykietaWierzcholka;
+        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długość boku" << std::endl;
@@ -311,42 +310,45 @@ public:
         std::cout << "Podaj wysokosc" << std::endl;
         std::cin >> wysokosc;
 
-        menedzerFigur.dodajOstroslupCzworokatnyPrawidlowy(kolor, bokPodstawy, wysokosc, etykietaWierzcholka);
+        menedzerFigur.dodajOstroslupCzworokatnyPrawidlowy(kolor, nazwa, bokPodstawy, wysokosc);
     }
 
     void dodajRownoboczny() {
         double bok;
         int kolor;
+        std::string nazwa;
 
+        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długość boku" << std::endl;
         std::cin >> bok;
 
-        menedzerFigur.dodajRownoboczny(kolor, bok);
+        menedzerFigur.dodajRownoboczny(kolor, nazwa, bok);
     }
 
     void dodajInneTrojkaty() {
         double bokA, bokB, bokC;
         int kolor;
+        std::string nazwa;
 
+        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długości bokow a b c" << std::endl;
         std::cin >> bokA >> bokB >> bokC;
 
 
-        menedzerFigur.dodajInneTrojkaty(kolor, bokA, bokB, bokC);
+        menedzerFigur.dodajInneTrojkaty(kolor, nazwa, bokA, bokB, bokC);
     }
 
     void dodajOstroslupTrojkatnyPrawidlowy() {
         int kolor;
         double bokPodstawy;
         double wysokosc;
-        std::string etykietaWierzcholka;
+        std::string nazwa;
 
-        std::cout << "Podaj etykiete wierzcholka" << std::endl;
-        std::cin >> etykietaWierzcholka;
+        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długość boku" << std::endl;
@@ -355,61 +357,28 @@ public:
         std::cin >> wysokosc;
 
 
-        menedzerFigur.dodajOstroslupTrojkatnyPrawidlowy(kolor, bokPodstawy, wysokosc, etykietaWierzcholka);
+        menedzerFigur.dodajOstroslupTrojkatnyPrawidlowy(kolor, nazwa, bokPodstawy, wysokosc);
     }
 
     void dodajInneCzworokaty() {
         double bokA, bokB, bokC, bokD;
         int kolor;
+        std::string nazwa;
 
+        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długości bokow a b c d" << std::endl;
         std::cin >> bokA >> bokB >> bokC >> bokD;
 
-        menedzerFigur.dodajInneCzworokaty(kolor, bokA, bokB, bokC, bokD);
-    }
-
-    void usunInneCzworokaty() {
-        int id;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
-        menedzerFigur.usunInneCzworokaty(id);
-    }
-
-    void usunOstroslupTrojkatnyPrawidlowy() {
-        int id;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
-        menedzerFigur.usunOstroslupTrojkatnyPrawidlowy(id);
-    }
-
-    void usunInneTrojkaty() {
-        int id;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
-        menedzerFigur.usunInneCzworokaty(id);
-    }
-
-    void usunRownoboczny() {
-        int id;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
-        menedzerFigur.usunRownoboczny(id);
-    }
-
-    void usunOstroslupCzworokatnyPrawidlowy() {
-        int id;
-        std::cout << "Podaj id" << std::endl;
-        std::cin >> id;
-        menedzerFigur.usunOstroslupCzworokatnyPrawidlowy(id);
+        menedzerFigur.dodajInneCzworokaty(kolor, nazwa, bokA, bokB, bokC, bokD);
     }
 
 
     void wypiszTrojkatyRownoboczne() {
         std::cout << "Wszystkie trojkaty rownoboczne:" << std::endl;
         for (auto &element : menedzerFigur.getLiscieRownoboczny()) {
-            std::cout << "Trojkat Rownoboczny o id: " << element->getId() << std::endl;
+            std::cout << "Trojkat Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -417,7 +386,7 @@ public:
     void wypiszInneTrojkaty() {
         std::cout << "Wszystkie inne trojkaty:" << std::endl;
         for (auto &element : menedzerFigur.getLiscieInneTrojkaty()) {
-            std::cout << "Inny trojkat o id: " << element->getId() << std::endl;
+            std::cout << "Inny trojkat o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -425,7 +394,7 @@ public:
     void wypiszInneCzworokaty() {
         std::cout << "Wszystkie inne czworokaty:" << std::endl;
         for (auto &element : menedzerFigur.getLiscieInneCzworokaty()) {
-            std::cout << "Inny czworokat o id: " << element->getId() << std::endl;
+            std::cout << "Inny czworokat o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -433,7 +402,7 @@ public:
     void wypiszOstroslupyTrojkatnePrawidlowe() {
         std::cout << "Wszystkie ostroslupy trojkatne prawidlowe:" << std::endl;
         for (auto &element : menedzerFigur.getLiscieOstroslupTrojkatnyPrawidlowy()) {
-            std::cout << "Ostroslup Trojkatny Rownoboczny o id: " << element->getId() << std::endl;
+            std::cout << "Ostroslup Trojkatny Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -441,7 +410,7 @@ public:
     void wypiszOstroslupyCzworokatnePrawidlowe() {
         std::cout << "Wszystkie ostroslupy czworokatne prawidlowe:" << std::endl;
         for (auto &element : menedzerFigur.getLiscieOstroslupCzworokatnyPrawidlowy()) {
-            std::cout << "Ostroslup Czworokatny Rownoboczny o id: " << element->getId() << std::endl;
+            std::cout << "Ostroslup Czworokatny Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -449,7 +418,7 @@ public:
     void wypiszPunkty() {
         std::cout << "Wszystkie punkty:" << std::endl;
         for (auto &element : menedzerFigur.getLisciePunkt()) {
-            std::cout << "Punkt o id: " << element->getId() << std::endl;
+            std::cout << "Punkt o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -457,7 +426,7 @@ public:
     void wypiszTrojkaty() {
         std::cout << "Wszystkie trojkaty:" << std::endl;
         for (auto &element : menedzerFigur.getLisciePunkt()) {
-            std::cout << "Trojkat o id: " << element->getId() << std::endl;
+            std::cout << "Trojkat o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -465,7 +434,7 @@ public:
     void wypiszCzworokaty() {
         std::cout << "Wszystkie Czworokaty:" << std::endl;
         for (auto &element : menedzerFigur.getLiscieCzworokat()) {
-            std::cout << "Czworokat o id: " << element->getId() << std::endl;
+            std::cout << "Czworokat o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -473,7 +442,7 @@ public:
     void wypiszKwadraty() {
         std::cout << "Wszystkie kwadraty:" << std::endl;
         for (auto &element : menedzerFigur.getLiscieKwadrat()) {
-            std::cout << "Kwadrat o id: " << element->getId() << std::endl;
+            std::cout << "Kwadrat o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -481,7 +450,7 @@ public:
     void wypiszWszystko() {
         std::cout << "Wszystkie figury:" << std::endl;
         for (auto &element : menedzerFigur.getLiscie()) {
-            std::cout << "Figura o id: " << element->getId() << std::endl;
+            std::cout << "Figura o nazwie: " << element->getNazwa() << std::endl;
         }
         std::cout << std::endl;
     }
