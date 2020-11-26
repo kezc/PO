@@ -6,7 +6,7 @@
 #include "OstroslupCzworokatnyPrawidlowy.h"
 
 void OstroslupCzworokatnyPrawidlowy::obliczKrawedz() {
-    krawedz = sqrt(pow((bokA * sqrt(2) / 2), 2) + pow(z, 2));
+    krawedz = sqrt(pow((bokA * sqrt(2) / 2), 2) + pow(getOdlegloscOdSrodkaUkladu(), 2));
 }
 
 void OstroslupCzworokatnyPrawidlowy::obliczObwod() {
@@ -47,7 +47,7 @@ void OstroslupCzworokatnyPrawidlowy::obliczPole() {
 }
 
 void OstroslupCzworokatnyPrawidlowy::obliczObjetosc() {
-    objetosc = bokA * bokA * z / 3.0;
+    objetosc = bokA * bokA * getOdlegloscOdSrodkaUkladu() / 3.0;
 }
 
 void OstroslupCzworokatnyPrawidlowy::modifykuj() {
@@ -87,7 +87,7 @@ void OstroslupCzworokatnyPrawidlowy::wypiszDane() {
     std::cout << "Obwod:" << getObwod() << std::endl;
     std::cout << "Pole powierzchni: " << pole << std::endl;
     std::cout << "Objetosc:" << objetosc << std::endl;
-    std::cout << "Wysokosc :" << z << std::endl;
+    std::cout << "Wysokosc :" << getOdlegloscOdSrodkaUkladu() << std::endl;
     std::cout << "Krawedz :" << krawedz << std::endl;
 }
 
@@ -97,5 +97,5 @@ void OstroslupCzworokatnyPrawidlowy::zapiszDoPliku(std::ofstream &plik) {
     plik << nazwa << std::endl;
     plik << kolor << std::endl;
     plik << bokA << std::endl;
-    plik << z << std::endl;
+    plik << getOdlegloscOdSrodkaUkladu() << std::endl;
 }

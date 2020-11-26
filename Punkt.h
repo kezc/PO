@@ -12,7 +12,7 @@
 template<typename T>
 class Punkt : public virtual FiguryGeometryczne {
 private:
-    // dodaj cos
+    double odlegloscOdSrodkaUkladu;
 protected:
     T x;
     T y;
@@ -22,22 +22,21 @@ public:
         Punkt::x = x;
         Punkt::y = y;
         Punkt::z = z;
+        obliczOdlegloscOdSrodkaUkladu();
     }
 
-    T getX() const {
-        return x;
+    void obliczOdlegloscOdSrodkaUkladu() {
+        odlegloscOdSrodkaUkladu = sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
     }
 
-    T getY() const {
-        return y;
-    }
-
-    T getZ() const {
-        return z;
+    double getOdlegloscOdSrodkaUkladu() const {
+        return odlegloscOdSrodkaUkladu;
     }
 
     Punkt(int kolor, std::string &nazwa, T x, T y, T z) : FiguryGeometryczne(kolor, nazwa), x(x),
-                                                             y(y), z(z) {}
+                                                          y(y), z(z) {
+        obliczOdlegloscOdSrodkaUkladu();
+    }
 
 };
 

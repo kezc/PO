@@ -29,12 +29,7 @@ class Konsola {
 public:
     void start() {
         std::string option;
-        std::cout << "Czy wczytac zapisane obiekty?" << std::endl;
-        std::cout << "TAK / NIE" << std::endl;
         std::cin >> option;
-        if (option == "TAK") {
-            wczytajFigury();
-        }
 
         while (option != "END") {
             std::cout << "Aktualny wezel: " << aktualnyWezelJakoString() << std::endl;
@@ -64,6 +59,12 @@ public:
                 wypiszSzczegolyDlaObiektuZLiscia(nazwa);
             } else if (option == "SAVE") {
                 zapiszFigury();
+            } else if (option == "READ") {
+                std::vector<FiguryGeometryczne *> *liscie = menedzerFigur.getLiscie();
+                int liczba = liscie->size();
+                delete liscie;
+                if (liczba == 0) wczytajFigury();
+                else std::cout << "Wczytanie obiektow jest mozliwe tylko gdy nie ma zadnego utworzonego." << std::endl;
             } else if (!option.empty()) {
                 std::cout << "Nieznana komenda." << std::endl;
             };

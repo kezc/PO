@@ -11,7 +11,7 @@ void OstroslupTrojkatnyPrawidlowy::obliczObwod() {
 }
 
 void OstroslupTrojkatnyPrawidlowy::obliczKrawedz() {
-    krawedz = sqrt(pow((2 * bokA * sqrt(3) / 6.0), 2) + pow(z, 2));
+    krawedz = sqrt(pow((2 * bokA * sqrt(3) / 6.0), 2) + pow(getOdlegloscOdSrodkaUkladu(), 2));
 }
 
 
@@ -44,12 +44,12 @@ void OstroslupTrojkatnyPrawidlowy::ustawWysokosc(double wysokosc) {
 }
 
 void OstroslupTrojkatnyPrawidlowy::obliczObjetosc() {
-    objetosc = bokA * bokA * z / 3.0;
+    objetosc = bokA * bokA * getOdlegloscOdSrodkaUkladu() / 3.0;
 }
 
 
 void OstroslupTrojkatnyPrawidlowy::obliczPole() {
-    double wysokoscBoku = sqrt(pow((bokA * sqrt(3) / 6.0), 2) + pow(z, 2));
+    double wysokoscBoku = sqrt(pow((bokA * sqrt(3) / 6.0), 2) + pow(getOdlegloscOdSrodkaUkladu(), 2));
     pole = pow(bokA, 2) * sqrt(3) / 4.0 + 3 * bokA * wysokoscBoku / 2;
 }
 
@@ -91,7 +91,7 @@ void OstroslupTrojkatnyPrawidlowy::wypiszDane() {
     std::cout << "Obwod:" << getObwod() << std::endl;
     std::cout << "Pole powierzchni: " << pole << std::endl;
     std::cout << "Objetosc:" << objetosc << std::endl;
-    std::cout << "Wysokosc :" << z << std::endl;
+    std::cout << "Wysokosc :" << getOdlegloscOdSrodkaUkladu() << std::endl;
     std::cout << "Krawedz :" << krawedz << std::endl;
 }
 
