@@ -26,14 +26,6 @@ InneCzworokaty::InneCzworokaty(int kolor, std::string &nazwa, double bokA, doubl
     obliczSredniaDlugoscBoku();
 }
 
-double InneCzworokaty::getSredniaDlugoscBoku() const {
-    return sredniaDlugoscBoku;
-}
-
-double InneCzworokaty::getIloczynDlugosciBokow() const {
-    return iloczynDlugosciBokow;
-}
-
 void InneCzworokaty::modifykuj() {
     std::cout << "Co chcesz zmienić?" << std::endl;
     std::cout << "1. Kolor" << std::endl;

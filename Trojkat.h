@@ -25,7 +25,6 @@ public:
 
     double getObwod();
 
-    double getPole() const;
 
     void ustawBoki(double bokA, double bokB, double bokC);
 

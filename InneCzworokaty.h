@@ -17,10 +17,6 @@ protected:
 public:
     void obliczObwod() override;
 
-    double getSredniaDlugoscBoku() const;
-
-    double getIloczynDlugosciBokow() const;
-
     InneCzworokaty(int kolor,std::string &nazwa, double bokA, double bokB, double bokC, double bokD);
 
     void modifykuj() override;

@@ -22,8 +22,6 @@ public:
 
     Kwadrat(int kolor,std::string &nazwa, double bok);
 
-    double getPole();
-
 };
 
 

@@ -14,21 +14,6 @@ double Czworokat::getObwod() {
     return obwod;
 }
 
-double Czworokat::getBokA() const {
-    return bokA;
-}
-
-double Czworokat::getBokB() const {
-    return bokB;
-}
-
-double Czworokat::getBokC() const {
-    return bokC;
-}
-
-double Czworokat::getBokD() const {
-    return bokD;
-}
 
 void Czworokat::ustawBoki(double bokA, double bokB, double bokC, double bokD) {
     Czworokat::bokA = bokA;

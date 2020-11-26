@@ -9,10 +9,6 @@ Kwadrat::Kwadrat(int kolor,std::string &nazwa, double bok) : FiguryGeometryczne(
     obliczObwod();
 }
 
-double Kwadrat::getPole() {
-    return pole;
-}
-
 void Kwadrat::obliczPole() {
     pole = bokA * bokA;
 }

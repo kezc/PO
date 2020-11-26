@@ -28,8 +28,19 @@ class Konsola {
 
 public:
     void start() {
+        std::cout << "Dostepne komendy:\n"
+                     " - CD [nazwa wezla] - zmiana wezla\n"
+                     " - MO [nazwa] - utworzenie obiektu dla obecnego liscia\n"
+                     " - DO [nazwa] - usuniecie obiektu z obecnego liscia\n"
+                     " - MDO [nazwa] - modyfikacja obiektu z obecnego liscia\n"
+                     " - SHOW [nazwa] - wyswietla szczegolowe informacje dla obiektu o podanej nazwie\n"
+                     " - DIR - wypisuje wszystkie elementy\n"
+                     " - SAVE - zapisywanie danych do pliku\n"
+                     " - READ - wczytywanie danych z pliku\n"
+                     " - TREE - wyswietlanei struktury drzewa\n"
+                     " - EXIT  - wyjscie z programu" << std::endl;
+        std::cout << "co chcesz zrobic?" << std::endl;
         std::string option;
-        std::cin >> option;
 
         while (option != "END") {
             std::cout << "Aktualny wezel: " << aktualnyWezelJakoString() << std::endl;
@@ -176,52 +187,65 @@ public:
     }
 
     void wypiszSzczegolyDlaObiektuZLiscia(std::string &nazwa) {
-        switch (aktualnyWezel) {
-            case Wezel::Rownoboczny:
-                Rownoboczny *rownoboczny;
-                if ((rownoboczny = menedzerFigur.znajdzRownoboczny(nazwa)) != nullptr) {
-                    rownoboczny->wypiszDane();
-                } else {
-                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-                }
-                break;
-            case Wezel::InneTrojkaty:
-                InneTrojkaty *inneTrojkaty;
-                if ((inneTrojkaty = menedzerFigur.znajdzInneTrojkaty(nazwa)) != nullptr) {
-                    inneTrojkaty->wypiszDane();
-                } else {
-                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-                }
-                break;
-            case Wezel::InneCzworokaty:
-                InneCzworokaty *inneCzworokaty;
-                if ((inneCzworokaty = menedzerFigur.znajdzCzworokat(nazwa)) != nullptr) {
-                    inneCzworokaty->wypiszDane();
-                } else {
-                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-                }
-                break;
-            case Wezel::OstroslupTrojkatnyPrawidlowy:
-                OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy;
-                if ((ostroslupTrojkatnyPrawidlowy = menedzerFigur.znajdzOstroslupTrojkatnyPrawidlowy(nazwa)) !=
-                    nullptr) {
-                    ostroslupTrojkatnyPrawidlowy->wypiszDane();
-                } else {
-                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-                }
-                break;
-            case Wezel::OstroslupCzworokatnyPrawidlowy:
-                OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy;
-                if ((ostroslupCzworokatnyPrawidlowy = menedzerFigur.znajdzOstroslupCzworokatnyPrawidlowy(nazwa)) !=
-                    nullptr) {
-                    ostroslupCzworokatnyPrawidlowy->wypiszDane();
-                } else {
-                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
-                }
-                break;
-            default:
-                std::cout << "Dla aktualnego wezla nie moge pokazac obiektu. Prosze przejsc do liscia." << std::endl;
+        FiguryGeometryczne *figuryGeometryczne = menedzerFigur.znajdzFigure(nazwa);
+        if (figuryGeometryczne != nullptr) {
+            figuryGeometryczne->wypiszDane();
+        } else {
+            std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
         }
+//
+//        switch (aktualnyWezel) {
+//            case Wezel::Rownoboczny: {
+//                Rownoboczny *rownoboczny = menedzerFigur.znajdzRownoboczny(nazwa);
+//                if (rownoboczny != nullptr) {
+//                    rownoboczny->wypiszDane();
+//                } else {
+//                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+//                }
+//                break;
+//            }
+//            case Wezel::InneTrojkaty: {
+//                InneTrojkaty *inneTrojkaty = menedzerFigur.znajdzInneTrojkaty(nazwa);
+//                if (inneTrojkaty != nullptr) {
+//                    inneTrojkaty->wypiszDane();
+//                } else {
+//                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+//                }
+//                break;
+//            }
+//            case Wezel::InneCzworokaty: {
+//                InneCzworokaty *inneCzworokaty = menedzerFigur.znajdzCzworokat(nazwa);
+//                if (inneCzworokaty != nullptr) {
+//                    inneCzworokaty->wypiszDane();
+//                } else {
+//                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+//                }
+//                break;
+//            }
+//            case Wezel::OstroslupTrojkatnyPrawidlowy: {
+//                OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = menedzerFigur.znajdzOstroslupTrojkatnyPrawidlowy(
+//                        nazwa);
+//                if (ostroslupTrojkatnyPrawidlowy != nullptr) {
+//                    ostroslupTrojkatnyPrawidlowy->wypiszDane();
+//                } else {
+//                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+//                }
+//                break;
+//            }
+//            case Wezel::OstroslupCzworokatnyPrawidlowy: {
+//                OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = menedzerFigur.znajdzOstroslupCzworokatnyPrawidlowy(
+//                        nazwa);
+//                if (ostroslupCzworokatnyPrawidlowy !=
+//                    nullptr) {
+//                    ostroslupCzworokatnyPrawidlowy->wypiszDane();
+//                } else {
+//                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+//                }
+//                break;
+//            }
+//            default:
+//                std::cout << "Dla aktualnego wezla nie moge pokazac obiektu. Prosze przejsc do liscia." << std::endl;
+//        }
     }
 
     void modyfikujObiektZLiscia(std::string &nazwa) {

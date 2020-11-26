@@ -174,7 +174,7 @@ public:
         return true;
     }
 
-    OstroslupCzworokatnyPrawidlowy *znajdzOstroslupCzworokatnyPrawidlowy(std::string &nazwa) const {
+    OstroslupCzworokatnyPrawidlowy *znajdzOstroslupCzworokatnyPrawidlowy(std::string &nazwa) {
         OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = nullptr;
         for (auto &element : liscieOstroslupCzworokatnyPrawidlowy) {
             if (element->getNazwa() == nazwa) {
@@ -182,6 +182,18 @@ public:
             }
         }
         return ostroslupCzworokatnyPrawidlowy;
+    }
+
+    FiguryGeometryczne *znajdzFigure(std::string &nazwa) {
+        FiguryGeometryczne *figura = nullptr;
+        std::vector<FiguryGeometryczne *> *liscie = getLiscie();
+        for (auto &element : liscieInneCzworokaty) {
+            if (element->getNazwa() == nazwa) {
+                figura = element;
+            }
+        }
+        delete liscie;
+        return figura;
     }
 
     virtual ~MenedzerFigur() {

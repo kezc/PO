@@ -20,14 +20,6 @@ public:
 
     double getObwod();
 
-    double getBokA() const;
-
-    double getBokB() const;
-
-    double getBokC() const;
-
-    double getBokD() const;
-
     void ustawBoki(double bokA, double bokB, double bokC, double bokD);
 
     Czworokat(int kolor,std::string &nazwa, double bokA, double bokB, double bokC, double bokD);

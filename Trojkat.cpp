@@ -19,10 +19,6 @@ void Trojkat::ustawBoki(double bokA, double bokB, double bokC) {
     obliczPole();
 }
 
-double Trojkat::getPole() const {
-    return pole;
-}
-
 void Trojkat::ustawObwod(double obwod) {
     Trojkat::obwod = obwod;
 }
