@@ -52,6 +52,7 @@ void InneCzworokaty::modifykuj() {
 }
 
 void InneCzworokaty::wypiszDane() {
+    std::cout << "Inny Czworokat" << std::endl;
     std::cout << "Id: " << getId() << std::endl;
     std::cout << "Nazwa: " << nazwa << std::endl;
     std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << ", bok D:" << bokD << std::endl;

@@ -24,10 +24,6 @@ public:
 
 public:
 
-    double getSredniaDlugoscBoku() const;
-
-    double getNajkrotszyBok() const;
-
     void modifykuj() override;
 
     void wypiszDane() override;

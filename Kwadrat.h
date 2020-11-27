@@ -1,7 +1,3 @@
-//
-// Created by wojtek on 11.11.2020.
-//
-
 #ifndef PROJEKT_KWADRAT_H
 #define PROJEKT_KWADRAT_H
 
@@ -22,6 +18,9 @@ public:
 
     Kwadrat(int kolor,std::string &nazwa, double bok);
 
+    void obliczPrzekatna();
+
+    double getPrzekatna();
 };
 
 

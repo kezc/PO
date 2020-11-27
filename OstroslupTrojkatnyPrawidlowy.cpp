@@ -84,6 +84,7 @@ void OstroslupTrojkatnyPrawidlowy::modifykuj() {
 }
 
 void OstroslupTrojkatnyPrawidlowy::wypiszDane() {
+    std::cout << "Ostroslup Czworokatny Prawidlowy" << std::endl;
     std::cout << "Id:" << getId() << std::endl;
     std::cout << "Nazwa: " << nazwa << std::endl;
     std::cout << "Bok podstawy: " << bokA << std::endl;

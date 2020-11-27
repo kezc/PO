@@ -25,7 +25,6 @@ public:
 
     double getObwod();
 
-
     void ustawBoki(double bokA, double bokB, double bokC);
 
 };

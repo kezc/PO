@@ -1,7 +1,3 @@
-//
-// Created by wojtek on 11.11.2020.
-//
-
 #include <iostream>
 #include "Rownoboczny.h"
 
@@ -19,18 +15,7 @@ void Rownoboczny::ustawBok(double bok) {
     obliczWysokosc();
     obliczPromienOkreguOpisanego();
 }
-//
-//void Rownoboczny::obliczObwod() {
-//    ustawObwod(3 * bokA);
-//}
-//
-//void Rownoboczny::obliczPole() {
-//    pole = pow(bokA, 2) * sqrt(3) / 4.0;
-//}
 
-double Rownoboczny::getWysokosc() const {
-    return wysokosc;
-}
 
 void Rownoboczny::obliczWysokosc() {
     wysokosc = bokA * sqrt(3) / 2.0;
@@ -38,10 +23,6 @@ void Rownoboczny::obliczWysokosc() {
 
 void Rownoboczny::obliczPromienOkreguOpisanego() {
     promienOkreguOpisanego = wysokosc * 2.0 / 3;
-}
-
-double Rownoboczny::getPromienOkreguOpisanego() const {
-    return promienOkreguOpisanego;
 }
 
 void Rownoboczny::modifykuj() {
@@ -71,6 +52,7 @@ void Rownoboczny::modifykuj() {
 }
 
 void Rownoboczny::wypiszDane() {
+    std::cout << "Rownoboczny" << std::endl;
     std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << std::endl;
     std::cout << "Id: " << getId() << std::endl;
     std::cout << "Nazwa: " << nazwa << std::endl;

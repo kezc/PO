@@ -6,10 +6,6 @@
 #include <iostream>
 #include "InneTrojkaty.h"
 
-double InneTrojkaty::getSredniaDlugoscBoku() const {
-    return sredniaDlugoscBoku;
-}
-
 void InneTrojkaty::obliczSredniaDlugoscBoku() {
     sredniaDlugoscBoku = (bokA + bokB + bokC) / 3.0;
 }
@@ -17,10 +13,6 @@ void InneTrojkaty::obliczSredniaDlugoscBoku() {
 void InneTrojkaty::obliczNajkrotszyBok() {
     double min1 = bokA < bokB ? bokA : bokB;
     najkrotszyBok = min1 < bokC ? min1 : bokC;
-}
-
-double InneTrojkaty::getNajkrotszyBok() const {
-    return najkrotszyBok;
 }
 
 InneTrojkaty::InneTrojkaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC) : FiguryGeometryczne(
@@ -57,6 +49,7 @@ void InneTrojkaty::modifykuj() {
 }
 
 void InneTrojkaty::wypiszDane() {
+    std::cout << "Inny trojkat" << std::endl;
     std::cout << "Id: " << getId() << std::endl;
     std::cout << "Nazwa: " << nazwa << std::endl;
     std::cout << "Bok A: " << bokA << ", bok B: " << bokB << ", bok C: " << bokC << std::endl;

@@ -187,7 +187,8 @@ public:
     FiguryGeometryczne *znajdzFigure(std::string &nazwa) {
         FiguryGeometryczne *figura = nullptr;
         std::vector<FiguryGeometryczne *> *liscie = getLiscie();
-        for (auto &element : liscieInneCzworokaty) {
+        for (auto &element : *liscie) {
+            std::cout << element->getNazwa() << std::endl;
             if (element->getNazwa() == nazwa) {
                 figura = element;
             }

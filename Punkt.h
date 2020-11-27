@@ -1,7 +1,3 @@
-//
-// Created by wojtek on 12.11.2020.
-//
-
 #ifndef PROJEKT_PUNKT_H
 #define PROJEKT_PUNKT_H
 
@@ -29,7 +25,7 @@ public:
         odlegloscOdSrodkaUkladu = sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
     }
 
-    double getOdlegloscOdSrodkaUkladu() const {
+    double getOdlegloscOdSrodkaUkladu() {
         return odlegloscOdSrodkaUkladu;
     }
 
