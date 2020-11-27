@@ -40,7 +40,6 @@ public:
         if (id > 0) ostroslupCzworokatnyPrawidlowy->setId(id);
 
         liscieOstroslupCzworokatnyPrawidlowy.push_back(ostroslupCzworokatnyPrawidlowy);
-        liscieOstroslupCzworokatnyPrawidlowy.push_back(ostroslupCzworokatnyPrawidlowy);
     }
 
     void dodajRownoboczny(int kolor, std::string &nazwa, double bok, int id = -1) {
@@ -73,8 +72,9 @@ public:
         liscieOstroslupTrojkatnyPrawidlowy.push_back(ostroslupTrojkatnyPrawidlowy);
     }
 
-    void
-    dodajInneCzworokaty(int kolor, std::string nazwa, double bokA, double bokB, double bokC, double bokD, int id = -1
+    void dodajInneCzworokaty(int kolor, std::string nazwa,
+                             double bokA, double bokB, double bokC, double bokD,
+                             int id = -1
     ) {
         auto *inneCzworokaty = new InneCzworokaty(kolor, nazwa, bokA, bokB, bokC, bokD);
 
@@ -84,7 +84,7 @@ public:
     }
 
     bool usunInneCzworokaty(std::string &nazwa) {
-        InneCzworokaty *innyCzworokat = znajdzCzworokat(nazwa);
+        InneCzworokaty *innyCzworokat = znajdzInneCzworokaty(nazwa);
 
         if (innyCzworokat == nullptr) return false;
 
@@ -93,7 +93,7 @@ public:
         return true;
     }
 
-    InneCzworokaty *znajdzCzworokat(std::string &nazwa) const {
+    InneCzworokaty *znajdzInneCzworokaty(std::string &nazwa) {
         InneCzworokaty *innyCzworokat = nullptr;
         for (auto &element : liscieInneCzworokaty) {
             if (element->getNazwa() == nazwa) {
@@ -197,7 +197,7 @@ public:
     }
 
     virtual ~MenedzerFigur() {
-        std::vector<FiguryGeometryczne *> * liscie = getLiscie();
+        std::vector<FiguryGeometryczne *> *liscie = getLiscie();
         for (auto &element : *liscie) {
             delete element;
         }
@@ -267,7 +267,7 @@ public:
     void zapiszDoPliku(std::string &nazwa) {
         std::ofstream plik;
         plik.open(nazwa);
-        std::vector<FiguryGeometryczne *> * liscie = getLiscie();
+        std::vector<FiguryGeometryczne *> *liscie = getLiscie();
         for (auto element : *liscie) {
             element->zapiszDoPliku(plik);
         }
@@ -282,7 +282,7 @@ public:
         for (auto element : liscieOstroslupTrojkatnyPrawidlowy) set.insert(element);
         for (auto element : liscieInneCzworokaty) set.insert(element);
         for (auto element : liscieOstroslupCzworokatnyPrawidlowy) set.insert(element);
-        auto *liscie = new std::vector<FiguryGeometryczne*>(set.begin(), set.end());
+        auto *liscie = new std::vector<FiguryGeometryczne *>(set.begin(), set.end());
         return liscie;
     }
 
@@ -299,7 +299,7 @@ public:
         for (auto element : liscieRownoboczny) set.insert(element);
         for (auto element : liscieInneTrojkaty) set.insert(element);
         for (auto element : liscieOstroslupTrojkatnyPrawidlowy) set.insert(element);
-        auto *liscie = new std::vector<Trojkat*>(set.begin(), set.end());
+        auto *liscie = new std::vector<Trojkat *>(set.begin(), set.end());
         return liscie;
     }
 
