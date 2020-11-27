@@ -188,7 +188,6 @@ public:
         FiguryGeometryczne *figura = nullptr;
         std::vector<FiguryGeometryczne *> *liscie = getLiscie();
         for (auto &element : *liscie) {
-            std::cout << element->getNazwa() << std::endl;
             if (element->getNazwa() == nazwa) {
                 figura = element;
             }

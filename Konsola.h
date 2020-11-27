@@ -39,38 +39,39 @@ public:
                      " - READ - wczytywanie danych z pliku\n"
                      " - TREE - wyswietlanei struktury drzewa\n"
                      " - EXIT  - wyjscie z programu" << std::endl;
-        std::cout << "co chcesz zrobic?" << std::endl;
         std::string option;
 
-        while (option != "END") {
+        while (option != "end") {
             std::cout << "Aktualny wezel: " << aktualnyWezelJakoString() << std::endl;
             std::cout << "co chcesz zrobic?" << std::endl;
             std::cin >> option;
+            std::transform(option.begin(), option.end(), option.begin(),
+                           [](unsigned char c) { return std::tolower(c); });
             if (option.substr(0, 2) == "CD") {
                 std::string wezel;
                 std::cin >> wezel;
                 zmienWezel(wezel);
-            } else if (option == "TREE") {
+            } else if (option == "tree") {
                 wypiszStrukture();
-            } else if (option == "MO") {
+            } else if (option == "mo") {
                 utworzObiektDlaAktualnegoLiscia();
-            } else if (option == "DO") {
+            } else if (option == "do") {
                 std::string nazwa;
                 std::cin >> nazwa;
                 usunObiektZLiscia(nazwa);
-            } else if (option == "MDO") {
+            } else if (option == "mdo") {
                 std::string nazwa;
                 std::cin >> nazwa;
                 modyfikujObiektZLiscia(nazwa);
-            } else if (option == "DIR") {
+            } else if (option == "dir") {
                 wypiszObiektyZAktualnegoWezla();
-            } else if (option == "SHOW") {
+            } else if (option == "show") {
                 std::string nazwa;
                 std::cin >> nazwa;
                 wypiszSzczegolyDlaObiektuZLiscia(nazwa);
-            } else if (option == "SAVE") {
+            } else if (option == "save") {
                 zapiszFigury();
-            } else if (option == "READ") {
+            } else if (option == "read") {
                 std::vector<FiguryGeometryczne *> *liscie = menedzerFigur.getLiscie();
                 int liczba = liscie->size();
                 delete liscie;
@@ -165,21 +166,29 @@ public:
     }
 
     void utworzObiektDlaAktualnegoLiscia() {
+        std::string nazwa;
+        std::cin >> nazwa;
+        FiguryGeometryczne *figuryGeometryczne = menedzerFigur.znajdzFigure(nazwa);
+        if (figuryGeometryczne != nullptr) {
+            std::cout << "Istnieje juz obiekt o takiej nazwie. Prosze podaj inna."  << std::endl;
+            return;
+        }
+
         switch (aktualnyWezel) {
             case Wezel::Rownoboczny:
-                dodajRownoboczny();
+                dodajRownoboczny(nazwa);
                 break;
             case Wezel::InneTrojkaty:
-                dodajInneTrojkaty();
+                dodajInneTrojkaty(nazwa);
                 break;
             case Wezel::InneCzworokaty:
-                dodajInneCzworokaty();
+                dodajInneCzworokaty(nazwa);
                 break;
             case Wezel::OstroslupTrojkatnyPrawidlowy:
-                dodajOstroslupTrojkatnyPrawidlowy();
+                dodajOstroslupTrojkatnyPrawidlowy(nazwa);
                 break;
             case Wezel::OstroslupCzworokatnyPrawidlowy:
-                dodajOstroslupCzworokatnyPrawidlowy();
+                dodajOstroslupCzworokatnyPrawidlowy(nazwa);
                 break;
             default:
                 std::cout << "Dla aktualnego wezla nie moge utworzyc obiektu. Prosze przejsc do liscia." << std::endl;
@@ -321,13 +330,11 @@ public:
         }
     }
 
-    void dodajOstroslupCzworokatnyPrawidlowy() {
+    void dodajOstroslupCzworokatnyPrawidlowy(std::string &nazwa) {
         int kolor;
         double bokPodstawy;
         double wysokosc;
-        std::string nazwa;
 
-        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długość boku" << std::endl;
@@ -338,12 +345,10 @@ public:
         menedzerFigur.dodajOstroslupCzworokatnyPrawidlowy(kolor, nazwa, bokPodstawy, wysokosc);
     }
 
-    void dodajRownoboczny() {
+    void dodajRownoboczny(std::string &nazwa) {
         double bok;
         int kolor;
-        std::string nazwa;
 
-        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długość boku" << std::endl;
@@ -352,12 +357,10 @@ public:
         menedzerFigur.dodajRownoboczny(kolor, nazwa, bok);
     }
 
-    void dodajInneTrojkaty() {
+    void dodajInneTrojkaty(std::string &nazwa) {
         double bokA, bokB, bokC;
         int kolor;
-        std::string nazwa;
 
-        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długości bokow a b c" << std::endl;
@@ -367,13 +370,11 @@ public:
         menedzerFigur.dodajInneTrojkaty(kolor, nazwa, bokA, bokB, bokC);
     }
 
-    void dodajOstroslupTrojkatnyPrawidlowy() {
+    void dodajOstroslupTrojkatnyPrawidlowy(std::string &nazwa) {
         int kolor;
         double bokPodstawy;
         double wysokosc;
-        std::string nazwa;
 
-        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długość boku" << std::endl;
@@ -385,12 +386,10 @@ public:
         menedzerFigur.dodajOstroslupTrojkatnyPrawidlowy(kolor, nazwa, bokPodstawy, wysokosc);
     }
 
-    void dodajInneCzworokaty() {
+    void dodajInneCzworokaty(std::string &nazwa) {
         double bokA, bokB, bokC, bokD;
         int kolor;
-        std::string nazwa;
 
-        std::cin >> nazwa;
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
         std::cout << "Podaj długości bokow a b c d" << std::endl;
