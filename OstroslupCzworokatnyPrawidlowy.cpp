@@ -5,6 +5,8 @@
 #include <iostream>
 #include "OstroslupCzworokatnyPrawidlowy.h"
 
+std::vector<OstroslupCzworokatnyPrawidlowy *> OstroslupCzworokatnyPrawidlowy::liscie;
+
 void OstroslupCzworokatnyPrawidlowy::obliczKrawedz() {
     krawedz = sqrt(pow((bokA * sqrt(2) / 2), 2) + pow(getOdlegloscOdSrodkaUkladu(), 2));
 }
@@ -23,6 +25,20 @@ OstroslupCzworokatnyPrawidlowy::OstroslupCzworokatnyPrawidlowy(int kolor, std::s
     obliczObwod();
     obliczPole();
     obliczObjetosc();
+    liscie.push_back(this);
+}
+
+OstroslupCzworokatnyPrawidlowy::OstroslupCzworokatnyPrawidlowy(int kolor, std::string &nazwa,
+                                                               double bokPodstawy,
+                                                               double wysokosc, int id)
+        : FiguryGeometryczne(kolor, nazwa), Punkt<double>(kolor, nazwa, 0, 0, wysokosc),
+          Kwadrat(kolor, nazwa, bokPodstawy) {
+    obliczKrawedz();
+    obliczObwod();
+    obliczPole();
+    obliczObjetosc();
+    setId(id);
+    liscie.push_back(this);
 }
 
 
@@ -100,4 +116,34 @@ void OstroslupCzworokatnyPrawidlowy::zapiszDoPliku(std::ofstream &plik) {
     plik << kolor << std::endl;
     plik << bokA << std::endl;
     plik << getOdlegloscOdSrodkaUkladu() << std::endl;
+}
+
+OstroslupCzworokatnyPrawidlowy *OstroslupCzworokatnyPrawidlowy::znajdzNaLiscie(std::string &nazwa) {
+    OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = nullptr;
+    for (auto &element : liscie) {
+        if (element->getNazwa() == nazwa) {
+            ostroslupCzworokatnyPrawidlowy = element;
+        }
+    }
+    return ostroslupCzworokatnyPrawidlowy;
+}
+
+bool OstroslupCzworokatnyPrawidlowy::usunZListy(std::string &nazwa) {
+    OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = znajdzNaLiscie(nazwa);
+    if (ostroslupCzworokatnyPrawidlowy == nullptr) return false;
+
+    liscie.erase(
+            std::remove(liscie.begin(), liscie.end(),
+                        ostroslupCzworokatnyPrawidlowy),
+            liscie.end());
+
+    delete ostroslupCzworokatnyPrawidlowy;
+    return true;
+}
+
+void OstroslupCzworokatnyPrawidlowy::wypiszWszystkie() {
+    std::cout << "Wszystkie ostroslupy czworokatne prawidlowe:" << std::endl;
+    for (auto &element : OstroslupCzworokatnyPrawidlowy::liscie) {
+        std::cout << "Ostroslup Czworokatny Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
+    }
 }

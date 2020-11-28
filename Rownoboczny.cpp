@@ -1,11 +1,23 @@
 #include <iostream>
 #include "Rownoboczny.h"
 
+std::vector<Rownoboczny *> Rownoboczny::liscie;
+
 Rownoboczny::Rownoboczny(int kolor, std::string &nazwa, double bok) : FiguryGeometryczne(kolor, nazwa),
                                                                       Trojkat(kolor, nazwa, bok, bok, bok) {
 
     obliczWysokosc();
     obliczPromienOkreguOpisanego();
+    Rownoboczny::liscie.push_back(this);
+}
+
+Rownoboczny::Rownoboczny(int kolor, std::string &nazwa, double bok, int id) : FiguryGeometryczne(kolor, nazwa),
+                                                                      Trojkat(kolor, nazwa, bok, bok, bok) {
+
+    obliczWysokosc();
+    obliczPromienOkreguOpisanego();
+    liscie.push_back(this);
+    setId(id);
 }
 
 void Rownoboczny::ustawBok(double bok) {
@@ -73,5 +85,33 @@ void Rownoboczny::zapiszDoPliku(std::ofstream &plik) {
 Rownoboczny *Rownoboczny::operator++() {
     ustawBok(bokA + 1);
     return this;
+}
+
+Rownoboczny *Rownoboczny::znajdzNaLiscie(std::string &nazwa) {
+    Rownoboczny *rownoboczny = nullptr;
+    for (auto &element : liscie) {
+        if (element->getNazwa() == nazwa) {
+            rownoboczny = element;
+        }
+    }
+    return rownoboczny;
+}
+
+bool Rownoboczny::usunZListy(std::string &nazwa) {
+    Rownoboczny *rownoboczny = znajdzNaLiscie(nazwa);
+    if (rownoboczny == nullptr) return false;
+
+    liscie.erase(std::remove(liscie.begin(), liscie.end(), rownoboczny),
+                 liscie.end());
+
+    delete rownoboczny;
+    return true;
+}
+
+void Rownoboczny::wypiszWszystkie() {
+    std::cout << "Wszystkie trojkaty rownoboczne:" << std::endl;
+    for (auto &element : Rownoboczny::liscie) {
+        std::cout << "Trojkat Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
+    }
 }
 

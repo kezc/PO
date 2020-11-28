@@ -1,11 +1,9 @@
-//
-// Created by wojtek on 13.11.2020.
-//
-
 #ifndef PROJEKT_INNETROJKATY_H
 #define PROJEKT_INNETROJKATY_H
 
 
+#include <vector>
+#include <algorithm>
 #include "Trojkat.h"
 
 class InneTrojkaty : public Trojkat {
@@ -19,10 +17,9 @@ protected:
     void obliczNajkrotszyBok();
 
 public:
-    InneTrojkaty(int kolor,std::string &nazwa, double bokA, double bokB, double bokC);
+    InneTrojkaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC);
 
-
-public:
+    InneTrojkaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC, int id);
 
     void modifykuj() override;
 
@@ -30,6 +27,13 @@ public:
 
     void zapiszDoPliku(std::ofstream &plik) override;
 
+    static std::vector<InneTrojkaty *> liscie;
+
+    static bool usunZListy(std::string &nazwa);
+
+    static InneTrojkaty *znajdzNaLiscie(std::string &nazwa);
+
+    static void wypiszWszystkie();
 };
 
 

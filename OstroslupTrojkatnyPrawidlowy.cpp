@@ -6,6 +6,9 @@
 #include <iostream>
 #include "OstroslupTrojkatnyPrawidlowy.h"
 
+std::vector<OstroslupTrojkatnyPrawidlowy *> OstroslupTrojkatnyPrawidlowy::liscie;
+
+
 void OstroslupTrojkatnyPrawidlowy::obliczObwod() {
     ustawObwod(3 * (bokA + krawedz));
 }
@@ -24,8 +27,20 @@ OstroslupTrojkatnyPrawidlowy::OstroslupTrojkatnyPrawidlowy(int kolor, std::strin
     obliczObwod();
     obliczPole();
     obliczObjetosc();
+    liscie.push_back(this);
 }
 
+OstroslupTrojkatnyPrawidlowy::OstroslupTrojkatnyPrawidlowy(int kolor, std::string &nazwa, double bokPodstawy,
+                                                           double wysokosc, int id)
+        : FiguryGeometryczne(kolor, nazwa), Punkt<double>(kolor, nazwa, 0, 0, wysokosc),
+          Trojkat(kolor, nazwa, bokPodstawy, bokPodstawy, bokPodstawy) {
+    obliczKrawedz();
+    obliczObwod();
+    obliczPole();
+    obliczObjetosc();
+    setId(id);
+    liscie.push_back(this);
+}
 
 void OstroslupTrojkatnyPrawidlowy::ustawBok(double bok) {
     ustawBoki(bok, bok, bok);
@@ -103,4 +118,34 @@ void OstroslupTrojkatnyPrawidlowy::zapiszDoPliku(std::ofstream &plik) {
     plik << kolor << std::endl;
     plik << bokA << std::endl;
     plik << z << std::endl;
+}
+
+bool OstroslupTrojkatnyPrawidlowy::usunZListy(std::string &nazwa) {
+    OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = znajdzNaLiscie(nazwa);
+    if (ostroslupTrojkatnyPrawidlowy == nullptr) return false;
+
+    liscie.erase(
+            std::remove(liscie.begin(), liscie.end(),
+                        ostroslupTrojkatnyPrawidlowy),
+            liscie.end());
+
+    delete ostroslupTrojkatnyPrawidlowy;
+    return true;
+}
+
+OstroslupTrojkatnyPrawidlowy *OstroslupTrojkatnyPrawidlowy::znajdzNaLiscie(std::string &nazwa) {
+    OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = nullptr;
+    for (auto &element : liscie) {
+        if (element->getNazwa() == nazwa) {
+            ostroslupTrojkatnyPrawidlowy = element;
+        }
+    }
+    return ostroslupTrojkatnyPrawidlowy;
+}
+
+void OstroslupTrojkatnyPrawidlowy::wypiszWszystkie() {
+    std::cout << "Wszystkie ostroslupy trojkatne prawidlowe:" << std::endl;
+    for (auto &element : OstroslupTrojkatnyPrawidlowy::liscie) {
+        std::cout << "Ostroslup Trojkatny Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
+    }
 }

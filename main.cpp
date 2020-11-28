@@ -3,7 +3,6 @@
 #include "Rownoboczny.h"
 #include "OstroslupTrojkatnyPrawidlowy.h"
 #include "InneTrojkaty.h"
-#include "MenedzerFigur.h"
 #include "Konsola.h"
 
 int FiguryGeometryczne::licznik = 0;

@@ -5,6 +5,9 @@
 #include <iostream>
 #include "InneCzworokaty.h"
 
+std::vector<InneCzworokaty *> InneCzworokaty::liscie;
+
+
 void InneCzworokaty::obliczObwod() {
     ustawObwod(bokA + bokB + bokC + bokD);
 }
@@ -18,12 +21,21 @@ void InneCzworokaty::obliczIloczynDlugosciBokow() {
 }
 
 InneCzworokaty::InneCzworokaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC, double bokD)
-        : FiguryGeometryczne(kolor, nazwa), Czworokat(kolor, nazwa, bokA,
-                                                      bokB, bokC,
-                                                      bokD) {
+        : FiguryGeometryczne(kolor, nazwa), Czworokat(kolor, nazwa, bokA, bokB, bokC, bokD) {
     obliczObwod();
     obliczIloczynDlugosciBokow();
     obliczSredniaDlugoscBoku();
+    liscie.push_back(this);
+}
+
+InneCzworokaty::InneCzworokaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC, double bokD,
+                               int id) : FiguryGeometryczne(kolor, nazwa),
+                                         Czworokat(kolor, nazwa, bokA, bokB, bokC, bokD) {
+    obliczObwod();
+    obliczIloczynDlugosciBokow();
+    obliczSredniaDlugoscBoku();
+    setId(id);
+    liscie.push_back(this);
 }
 
 void InneCzworokaty::modifykuj() {
@@ -72,4 +84,33 @@ void InneCzworokaty::zapiszDoPliku(std::ofstream &plik) {
     plik << bokB << std::endl;
     plik << bokC << std::endl;
     plik << bokD << std::endl;
+}
+
+bool InneCzworokaty::usunZListy(std::string &nazwa) {
+    InneCzworokaty *innyCzworokat = znajdzNaLiscie(nazwa);
+
+    if (innyCzworokat == nullptr) return false;
+
+    liscie.erase(std::remove(liscie.begin(), liscie.end(), innyCzworokat),
+                 liscie.end());
+    delete innyCzworokat;
+
+    return true;
+}
+
+InneCzworokaty *InneCzworokaty::znajdzNaLiscie(std::string &nazwa) {
+    InneCzworokaty *innyCzworokat = nullptr;
+    for (auto &element : liscie) {
+        if (element->getNazwa() == nazwa) {
+            innyCzworokat = element;
+        }
+    }
+    return innyCzworokat;
+}
+
+void InneCzworokaty::wypiszWszystkie() {
+    std::cout << "Wszystkie inne czworokaty:" << std::endl;
+    for (auto &element : InneCzworokaty::liscie) {
+        std::cout << "Inny czworokat o nazwie: " << element->getNazwa() << std::endl;
+    }
 }

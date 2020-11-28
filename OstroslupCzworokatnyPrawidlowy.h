@@ -6,6 +6,8 @@
 #define PROJEKT_OSTROSLUPCZWOROKATNYPRAWIDLOWY_H
 
 
+#include <vector>
+#include <algorithm>
 #include "Kwadrat.h"
 #include "Punkt.h"
 
@@ -26,6 +28,8 @@ public:
 
     OstroslupCzworokatnyPrawidlowy(int kolor, std::string &nazwa, double bokPodstawy,
                                    double wysokosc);
+    OstroslupCzworokatnyPrawidlowy(int kolor, std::string &nazwa, double bokPodstawy,
+                                   double wysokosc, int id);
 
     void ustawBok(double bok) override;
 
@@ -38,6 +42,14 @@ public:
     void obliczObjetosc();
 
     void zapiszDoPliku(std::ofstream &plik) override;
+
+    static std::vector<OstroslupCzworokatnyPrawidlowy *> liscie;
+
+    static OstroslupCzworokatnyPrawidlowy *znajdzNaLiscie(std::string &nazwa);
+
+    static bool usunZListy(std::string &nazwa);
+
+    static void wypiszWszystkie();
 };
 
 

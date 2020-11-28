@@ -3,6 +3,8 @@
 
 
 #include <ctgmath>
+#include <algorithm>
+#include <vector>
 #include "Trojkat.h"
 
 class Rownoboczny : public Trojkat {
@@ -18,6 +20,8 @@ protected:
 public:
     Rownoboczny(int kolor, std::string &nazwa, double bok);
 
+    Rownoboczny(int kolor, std::string &nazwa, double bok, int id);
+
     void ustawBok(double bok);
 
     void modifykuj() override;
@@ -27,6 +31,15 @@ public:
     void wypiszDane() override;
 
     void zapiszDoPliku(std::ofstream &plik) override;
+
+    static std::vector<Rownoboczny *> liscie;
+
+    static bool usunZListy(std::string &nazwa);
+
+    static Rownoboczny *znajdzNaLiscie(std::string &nazwa);
+
+    static void wypiszWszystkie();
+
 };
 
 
