@@ -28,6 +28,7 @@ public:
 
     OstroslupCzworokatnyPrawidlowy(int kolor, std::string &nazwa, double bokPodstawy,
                                    double wysokosc);
+
     OstroslupCzworokatnyPrawidlowy(int kolor, std::string &nazwa, double bokPodstawy,
                                    double wysokosc, int id);
 

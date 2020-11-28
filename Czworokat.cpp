@@ -4,10 +4,11 @@
 
 #include "Czworokat.h"
 
-Czworokat::Czworokat(int kolor, std::string &nazwa, double bokA, double bokB, double bokC, double bokD) : FiguryGeometryczne(kolor, nazwa),
-                                                                                      bokA(bokA),
-                                                                                      bokB(bokB), bokC(bokC),
-                                                                                      bokD(bokD) {
+Czworokat::Czworokat(int kolor, std::string &nazwa, double bokA, double bokB, double bokC, double bokD)
+        : FiguryGeometryczne(kolor, nazwa),
+          bokA(bokA),
+          bokB(bokB), bokC(bokC),
+          bokD(bokD) {
 }
 
 double Czworokat::getObwod() {

@@ -21,7 +21,7 @@ public:
 
     FiguryGeometryczne(int kolor, std::string &nazwa);
 
-    int getId() const;
+    int getId();
 
     virtual void modifykuj() = 0;
 
@@ -35,7 +35,7 @@ public:
 
     static void ustawLicznik(int licznik);
 
-    const std::string &getNazwa() const;
+    const std::string &getNazwa();
 };
 
 

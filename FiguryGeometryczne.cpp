@@ -13,7 +13,7 @@ void FiguryGeometryczne::ustawKolor(int kolor) {
     FiguryGeometryczne::kolor = kolor;
 }
 
-int FiguryGeometryczne::getId() const {
+int FiguryGeometryczne::getId() {
     return id;
 }
 
@@ -29,6 +29,6 @@ void FiguryGeometryczne::setId(int id) {
     FiguryGeometryczne::id = id;
 }
 
-const std::string &FiguryGeometryczne::getNazwa() const {
+const std::string &FiguryGeometryczne::getNazwa() {
     return nazwa;
 }

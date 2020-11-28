@@ -16,7 +16,7 @@ public:
 
     virtual void ustawBok(double bok);
 
-    Kwadrat(int kolor,std::string &nazwa, double bok);
+    Kwadrat(int kolor, std::string &nazwa, double bok);
 
     void obliczPrzekatna();
 
