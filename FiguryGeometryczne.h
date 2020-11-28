@@ -9,7 +9,6 @@
 #include <fstream>
 
 class FiguryGeometryczne {
-    //dodaj prywatne
     static int licznik;
     int id;
 protected:
