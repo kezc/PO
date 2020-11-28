@@ -97,16 +97,16 @@ void OstroslupCzworokatnyPrawidlowy::modifykuj() {
 
 void OstroslupCzworokatnyPrawidlowy::wypiszDane() {
     std::cout << "Ostroslup Czworokatny Prawidlowy" << std::endl;
-    std::cout << "Id:" << getId() << std::endl;
+    std::cout << "Id: " << getId() << std::endl;
     std::cout << "Nazwa: " << nazwa << std::endl;
     std::cout << "Bok podstawy: " << bokA << std::endl;
     std::cout << "Kolor: " << kolor << std::endl;
-    std::cout << "Obwod:" << getObwod() << std::endl;
+    std::cout << "Obwod: " << getObwod() << std::endl;
     std::cout << "Pole powierzchni: " << pole << std::endl;
     std::cout << "Objetosc:" << objetosc << std::endl;
-    std::cout << "Wysokosc :" << getOdlegloscOdSrodkaUkladu() << std::endl;
-    std::cout << "Krawedz :" << krawedz << std::endl;
-    std::cout << "Przekatna podstawy :" << getPrzekatna() << std::endl;
+    std::cout << "Wysokosc: " << getOdlegloscOdSrodkaUkladu() << std::endl;
+    std::cout << "Krawedz: " << krawedz << std::endl;
+    std::cout << "Przekatna podstawy: " << getPrzekatna() << std::endl;
 }
 
 void OstroslupCzworokatnyPrawidlowy::zapiszDoPliku(std::ofstream &plik) {
@@ -146,4 +146,5 @@ void OstroslupCzworokatnyPrawidlowy::wypiszWszystkie() {
     for (auto &element : OstroslupCzworokatnyPrawidlowy::liscie) {
         std::cout << "Ostroslup Czworokatny Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
     }
+    if (liscie.empty()) std::cout << "Brak elementow do wyswietlenia" << std::endl;
 }

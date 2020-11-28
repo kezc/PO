@@ -12,7 +12,7 @@ Rownoboczny::Rownoboczny(int kolor, std::string &nazwa, double bok) : FiguryGeom
 }
 
 Rownoboczny::Rownoboczny(int kolor, std::string &nazwa, double bok, int id) : FiguryGeometryczne(kolor, nazwa),
-                                                                      Trojkat(kolor, nazwa, bok, bok, bok) {
+                                                                              Trojkat(kolor, nazwa, bok, bok, bok) {
 
     obliczWysokosc();
     obliczPromienOkreguOpisanego();
@@ -110,8 +110,9 @@ bool Rownoboczny::usunZListy(std::string &nazwa) {
 
 void Rownoboczny::wypiszWszystkie() {
     std::cout << "Wszystkie trojkaty rownoboczne:" << std::endl;
-    for (auto &element : Rownoboczny::liscie) {
+    for (auto &element : liscie) {
         std::cout << "Trojkat Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
     }
+    if (liscie.empty()) std::cout << "Brak elementow do wyswietlenia" << std::endl;
 }
 

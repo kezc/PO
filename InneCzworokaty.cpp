@@ -113,4 +113,5 @@ void InneCzworokaty::wypiszWszystkie() {
     for (auto &element : InneCzworokaty::liscie) {
         std::cout << "Inny czworokat o nazwie: " << element->getNazwa() << std::endl;
     }
+    if (liscie.empty()) std::cout << "Brak elementow do wyswietlenia" << std::endl;
 }

@@ -104,11 +104,11 @@ void OstroslupTrojkatnyPrawidlowy::wypiszDane() {
     std::cout << "Nazwa: " << nazwa << std::endl;
     std::cout << "Bok podstawy: " << bokA << std::endl;
     std::cout << "Kolor: " << kolor << std::endl;
-    std::cout << "Obwod:" << getObwod() << std::endl;
+    std::cout << "Obwod: " << getObwod() << std::endl;
     std::cout << "Pole powierzchni: " << pole << std::endl;
-    std::cout << "Objetosc:" << objetosc << std::endl;
-    std::cout << "Wysokosc :" << getOdlegloscOdSrodkaUkladu() << std::endl;
-    std::cout << "Krawedz :" << krawedz << std::endl;
+    std::cout << "Objetosc: " << objetosc << std::endl;
+    std::cout << "Wysokosc: " << getOdlegloscOdSrodkaUkladu() << std::endl;
+    std::cout << "Krawedz: " << krawedz << std::endl;
 }
 
 void OstroslupTrojkatnyPrawidlowy::zapiszDoPliku(std::ofstream &plik) {
@@ -148,4 +148,5 @@ void OstroslupTrojkatnyPrawidlowy::wypiszWszystkie() {
     for (auto &element : OstroslupTrojkatnyPrawidlowy::liscie) {
         std::cout << "Ostroslup Trojkatny Rownoboczny o nazwie: " << element->getNazwa() << std::endl;
     }
+    if (liscie.empty()) std::cout << "Brak elementow do wyswietlenia" << std::endl;
 }

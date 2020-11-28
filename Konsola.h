@@ -187,75 +187,75 @@ public:
     void wypiszSzczegolyDlaObiektuZLiscia() {
         std::string nazwa;
         std::cin >> nazwa;
-
-        bool found = false;
-        std::vector<FiguryGeometryczne *> *liscie = getLiscie();
-        for (auto &element : *liscie) {
-            if (element->getNazwa() == nazwa) {
-                element->wypiszDane();
-                found = true;
-            }
-        }
-        delete liscie;
-
-        if (!found) {
-            std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-        }
+//
+//        bool found = false;
+//        std::vector<FiguryGeometryczne *> *liscie = getLiscie();
+//        for (auto &element : *liscie) {
+//            if (element->getNazwa() == nazwa) {
+//                element->wypiszDane();
+//                found = true;
+//            }
+//        }
+//        delete liscie;
+//
+//        if (!found) {
+//            std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+//        }
 
 // Czy wyczytywanie po nazwie powinno zalezec od aktualnego wezla?
 //
-//        switch (aktualnyWezel) {
-//            case Wezel::Rownoboczny: {
-//                Rownoboczny *rownoboczny = Rownoboczny::znajdzNaLiscie(nazwa);
-//                if (rownoboczny != nullptr) {
-//                    rownoboczny->wypiszDane();
-//                } else {
-//                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-//                }
-//                break;
-//            }
-//            case Wezel::InneTrojkaty: {
-//                InneTrojkaty *inneTrojkaty = InneTrojkaty::znajdzNaLiscie(nazwa);
-//                if (inneTrojkaty != nullptr) {
-//                    inneTrojkaty->wypiszDane();
-//                } else {
-//                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-//                }
-//                break;
-//            }
-//            case Wezel::InneCzworokaty: {
-//                InneCzworokaty *inneCzworokaty = InneCzworokaty::znajdzNaLiscie(nazwa);
-//                if (inneCzworokaty != nullptr) {
-//                    inneCzworokaty->wypiszDane();
-//                } else {
-//                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-//                }
-//                break;
-//            }
-//            case Wezel::OstroslupTrojkatnyPrawidlowy: {
-//                OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = OstroslupTrojkatnyPrawidlowy::znajdzNaLiscie(
-//                        nazwa);
-//                if (ostroslupTrojkatnyPrawidlowy != nullptr) {
-//                    ostroslupTrojkatnyPrawidlowy->wypiszDane();
-//                } else {
-//                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
-//                }
-//                break;
-//            }
-//            case Wezel::OstroslupCzworokatnyPrawidlowy: {
-//                OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = OstroslupCzworokatnyPrawidlowy::znajdzNaLiscie(
-//                        nazwa);
-//                if (ostroslupCzworokatnyPrawidlowy !=
-//                    nullptr) {
-//                    ostroslupCzworokatnyPrawidlowy->wypiszDane();
-//                } else {
-//                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
-//                }
-//                break;
-//            }
-//            default:
-//                std::cout << "Dla aktualnego wezla nie moge pokazac obiektu. Prosze przejsc do liscia." << std::endl;
-//        }
+        switch (aktualnyWezel) {
+            case Wezel::Rownoboczny: {
+                Rownoboczny *rownoboczny = Rownoboczny::znajdzNaLiscie(nazwa);
+                if (rownoboczny != nullptr) {
+                    rownoboczny->wypiszDane();
+                } else {
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+                }
+                break;
+            }
+            case Wezel::InneTrojkaty: {
+                InneTrojkaty *inneTrojkaty = InneTrojkaty::znajdzNaLiscie(nazwa);
+                if (inneTrojkaty != nullptr) {
+                    inneTrojkaty->wypiszDane();
+                } else {
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+                }
+                break;
+            }
+            case Wezel::InneCzworokaty: {
+                InneCzworokaty *inneCzworokaty = InneCzworokaty::znajdzNaLiscie(nazwa);
+                if (inneCzworokaty != nullptr) {
+                    inneCzworokaty->wypiszDane();
+                } else {
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+                }
+                break;
+            }
+            case Wezel::OstroslupTrojkatnyPrawidlowy: {
+                OstroslupTrojkatnyPrawidlowy *ostroslupTrojkatnyPrawidlowy = OstroslupTrojkatnyPrawidlowy::znajdzNaLiscie(
+                        nazwa);
+                if (ostroslupTrojkatnyPrawidlowy != nullptr) {
+                    ostroslupTrojkatnyPrawidlowy->wypiszDane();
+                } else {
+                    std::cout << "Nie znaleziono obiektu o takiej nazwie." << std::endl;
+                }
+                break;
+            }
+            case Wezel::OstroslupCzworokatnyPrawidlowy: {
+                OstroslupCzworokatnyPrawidlowy *ostroslupCzworokatnyPrawidlowy = OstroslupCzworokatnyPrawidlowy::znajdzNaLiscie(
+                        nazwa);
+                if (ostroslupCzworokatnyPrawidlowy !=
+                    nullptr) {
+                    ostroslupCzworokatnyPrawidlowy->wypiszDane();
+                } else {
+                    std::cout << "Nie znaleziono obiektu z takim id." << std::endl;
+                }
+                break;
+            }
+            default:
+                std::cout << "Dla aktualnego wezla nie moge pokazac obiektu. Prosze przejsc do liscia." << std::endl;
+        }
     }
 
     void modyfikujObiektZLiscia() {
@@ -440,6 +440,8 @@ public:
         for (auto &element : *punkt) {
             std::cout << "Punkt o nazwie: " << element->getNazwa() << std::endl;
         }
+        if (punkt->empty())         std::cout << "Brak elementow do wyswietlenia" << std::endl;
+
         delete punkt;
     }
 
@@ -449,6 +451,7 @@ public:
         for (auto &element : *liscieTrojkat) {
             std::cout << "Trojkat o nazwie: " << element->getNazwa() << std::endl;
         }
+        if (liscieTrojkat->empty())         std::cout << "Brak elementow do wyswietlenia" << std::endl;
         delete liscieTrojkat;
     }
 
@@ -458,6 +461,8 @@ public:
         for (auto &element : *liscieCzworokat) {
             std::cout << "Czworokat o nazwie: " << element->getNazwa() << std::endl;
         }
+        if (liscieCzworokat->empty())         std::cout << "Brak elementow do wyswietlenia" << std::endl;
+
         delete liscieCzworokat;
     }
 
@@ -467,6 +472,8 @@ public:
         for (auto &element : *liscieKwadrat) {
             std::cout << "Kwadrat o nazwie: " << element->getNazwa() << std::endl;
         }
+        if (liscieKwadrat->empty())         std::cout << "Brak elementow do wyswietlenia" << std::endl;
+
         delete liscieKwadrat;
     }
 

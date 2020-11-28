@@ -95,6 +95,8 @@ void InneTrojkaty::wypiszWszystkie() {
     for (auto &element : InneTrojkaty::liscie) {
         std::cout << "Inny trojkat o nazwie: " << element->getNazwa() << std::endl;
     }
+    if (liscie.empty()) std::cout << "Brak elementow do wyswietlenia" << std::endl;
+
 }
 
 InneTrojkaty *InneTrojkaty::znajdzNaLiscie(std::string &nazwa) {
