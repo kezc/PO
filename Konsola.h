@@ -353,7 +353,7 @@ public:
 
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
-        std::cout << "Podaj długość boku" << std::endl;
+        std::cout << "Podaj długość boku podstawy" << std::endl;
         std::cin >> bokPodstawy;
         std::cout << "Podaj wysokosc" << std::endl;
         std::cin >> wysokosc;
@@ -408,7 +408,7 @@ public:
 
         std::cout << "Podaj kolor" << std::endl;
         std::cin >> kolor;
-        std::cout << "Podaj długość boku" << std::endl;
+        std::cout << "Podaj długość boku podstawy" << std::endl;
         std::cin >> bokPodstawy;
         std::cout << "Podaj wysokosc" << std::endl;
         std::cin >> wysokosc;

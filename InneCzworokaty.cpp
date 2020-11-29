@@ -63,6 +63,12 @@ void InneCzworokaty::modifykuj() {
 
 }
 
+void InneCzworokaty::ustawBoki(double bokA, double bokB, double bokC, double bokD) {
+    Czworokat::ustawBoki(bokA, bokB, bokC, bokD);
+    obliczIloczynDlugosciBokow();
+    obliczSredniaDlugoscBoku();
+}
+
 void InneCzworokaty::wypiszDane() {
     std::cout << "Inny Czworokat" << std::endl;
     std::cout << "Id: " << getId() << std::endl;

@@ -37,16 +37,19 @@ OstroslupCzworokatnyPrawidlowy::OstroslupCzworokatnyPrawidlowy(int kolor, std::s
     obliczObwod();
     obliczPole();
     obliczObjetosc();
+    obliczPrzekatna();
     setId(id);
     liscie.push_back(this);
 }
 
 
 void OstroslupCzworokatnyPrawidlowy::ustawBok(double bok) {
+    ustawBoki(bok, bok, bok, bok);
     obliczKrawedz();
     obliczObwod();
     obliczPole();
     obliczObjetosc();
+    obliczPrzekatna();
 }
 
 void OstroslupCzworokatnyPrawidlowy::ustawWysokosc(double wysokosc) {
@@ -55,6 +58,7 @@ void OstroslupCzworokatnyPrawidlowy::ustawWysokosc(double wysokosc) {
     obliczObwod();
     obliczPole();
     obliczObjetosc();
+    obliczPrzekatna();
 }
 
 void OstroslupCzworokatnyPrawidlowy::obliczPole() {

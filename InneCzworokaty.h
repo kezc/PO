@@ -36,6 +36,8 @@ public:
     static InneCzworokaty *znajdzNaLiscie(std::string &nazwa);
 
     static void wypiszWszystkie();
+
+    void ustawBoki(double bokA, double bokB, double bokC, double bokD) override;
 };
 
 
