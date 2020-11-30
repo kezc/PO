@@ -57,6 +57,12 @@ void InneTrojkaty::modifykuj() {
     }
 }
 
+void InneTrojkaty::ustawBoki(double bokA, double bokB, double bokC) {
+    Trojkat::ustawBoki(bokA, bokB, bokC);
+    obliczSredniaDlugoscBoku();
+    obliczNajkrotszyBok();
+}
+
 void InneTrojkaty::wypiszDane() {
     std::cout << "Inny trojkat" << std::endl;
     std::cout << "Id: " << getId() << std::endl;

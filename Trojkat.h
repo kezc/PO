@@ -20,12 +20,12 @@ protected:
 
     void ustawObwod(double obwod);
 
+    virtual void ustawBoki(double bokA, double bokB, double bokC);
 public:
     Trojkat(int kolor, std::string &nazwa, double bokA, double bokB, double bokC);
 
     double getObwod();
 
-    void ustawBoki(double bokA, double bokB, double bokC);
 
 };
 

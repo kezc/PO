@@ -16,6 +16,8 @@ protected:
 
     void obliczNajkrotszyBok();
 
+    void ustawBoki(double bokA, double bokB, double bokC) override;
+
 public:
     InneTrojkaty(int kolor, std::string &nazwa, double bokA, double bokB, double bokC);
 

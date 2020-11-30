@@ -22,8 +22,6 @@ Rownoboczny::Rownoboczny(int kolor, std::string &nazwa, double bok, int id) : Fi
 
 void Rownoboczny::ustawBok(double bok) {
     ustawBoki(bok, bok, bok);
-    obliczPole();
-    obliczObwod();
     obliczWysokosc();
     obliczPromienOkreguOpisanego();
 }

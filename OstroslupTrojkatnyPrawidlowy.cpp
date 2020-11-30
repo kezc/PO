@@ -45,8 +45,6 @@ OstroslupTrojkatnyPrawidlowy::OstroslupTrojkatnyPrawidlowy(int kolor, std::strin
 void OstroslupTrojkatnyPrawidlowy::ustawBok(double bok) {
     ustawBoki(bok, bok, bok);
     obliczKrawedz();
-    obliczObwod();
-    obliczPole();
     obliczObjetosc();
 }
 
